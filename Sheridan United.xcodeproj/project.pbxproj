@@ -14,9 +14,10 @@
 		AE232AD51E8E1A0A00375D4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE232AD31E8E1A0A00375D4E /* Main.storyboard */; };
 		AE232AD71E8E1A0A00375D4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE232AD61E8E1A0A00375D4E /* Assets.xcassets */; };
 		AE232ADA1E8E1A0A00375D4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE232AD81E8E1A0A00375D4E /* LaunchScreen.storyboard */; };
-		AE232AE31E8E1A9D00375D4E /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE232AE21E8E1A9D00375D4E /* ChatViewController.m */; };
+		AE232AE31E8E1A9D00375D4E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE232AE21E8E1A9D00375D4E /* MainViewController.m */; };
 		AE232AE71E8E216E00375D4E /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE232AE61E8E216E00375D4E /* background.jpg */; };
 		AE232AE91E8E2E8B00375D4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE232AE81E8E2E8B00375D4E /* GoogleService-Info.plist */; };
+		AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE232AEB1E8E5AC400375D4E /* ChatViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +33,12 @@
 		AE232AD61E8E1A0A00375D4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE232AD91E8E1A0A00375D4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE232ADB1E8E1A0A00375D4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE232AE11E8E1A9D00375D4E /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
-		AE232AE21E8E1A9D00375D4E /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		AE232AE11E8E1A9D00375D4E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		AE232AE21E8E1A9D00375D4E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AE232AE61E8E216E00375D4E /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = ../background.jpg; sourceTree = "<group>"; };
 		AE232AE81E8E2E8B00375D4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AE232AEA1E8E5AC400375D4E /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		AE232AEB1E8E5AC400375D4E /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		EF2E5F915F8735B83C517255 /* Pods-Sheridan United.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sheridan United.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sheridan United/Pods-Sheridan United.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,8 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				AE232AE61E8E216E00375D4E /* background.jpg */,
-				AE232AE11E8E1A9D00375D4E /* ChatViewController.h */,
-				AE232AE21E8E1A9D00375D4E /* ChatViewController.m */,
+				AE232AE11E8E1A9D00375D4E /* MainViewController.h */,
+				AE232AE21E8E1A9D00375D4E /* MainViewController.m */,
 				AE232ACD1E8E1A0A00375D4E /* AppDelegate.h */,
 				AE232ACE1E8E1A0A00375D4E /* AppDelegate.m */,
 				AE232AD01E8E1A0A00375D4E /* ViewController.h */,
@@ -102,6 +105,8 @@
 				AE232AD81E8E1A0A00375D4E /* LaunchScreen.storyboard */,
 				AE232ADB1E8E1A0A00375D4E /* Info.plist */,
 				AE232ACA1E8E1A0A00375D4E /* Supporting Files */,
+				AE232AEA1E8E5AC400375D4E /* ChatViewController.h */,
+				AE232AEB1E8E5AC400375D4E /* ChatViewController.m */,
 			);
 			path = "Sheridan United";
 			sourceTree = "<group>";
@@ -240,7 +245,8 @@
 			files = (
 				AE232AD21E8E1A0A00375D4E /* ViewController.m in Sources */,
 				AE232ACF1E8E1A0A00375D4E /* AppDelegate.m in Sources */,
-				AE232AE31E8E1A9D00375D4E /* ChatViewController.m in Sources */,
+				AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */,
+				AE232AE31E8E1A9D00375D4E /* MainViewController.m in Sources */,
 				AE232ACC1E8E1A0A00375D4E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +406,7 @@
 				AE232AE01E8E1A0A00375D4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -61,8 +61,9 @@ if (emailTextField.text.length > 0 && passwordTextField.text.length>0) {
              }
              else
              {
-                 errorLabel.text=@"Unable to register!";             }
+                 errorLabel.text=@"Unable to register!";
              }
+         }
        ];
         
     }

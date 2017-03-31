@@ -180,10 +180,10 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="YYr-QK-uJa">
             <objects>
-                <viewController id="bAr-0b-39L" customClass="ChatViewController" sceneMemberID="viewController">
+                <viewController id="bAr-0b-39L" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yB9-Zh-hzz"/>
                         <viewControllerLayoutGuide type="bottom" id="nJz-04-rEb"/>
@@ -194,7 +194,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ga1-2D-rPX">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="GRl-Tb-y55">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="GRl-Tb-y55">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="logOutDidTapped:" destination="bAr-0b-39L" id="PvB-o1-Zz9"/>
@@ -204,7 +204,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eoh-nD-G0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1703" y="38"/>
+            <point key="canvasLocation" x="1726" y="37"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="0vT-Gk-cgY">
+            <objects>
+                <viewController id="Wwa-eg-YRv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rfl-7X-kXN"/>
+                        <viewControllerLayoutGuide type="bottom" id="yCX-xS-K7g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ogc-B1-fnd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K9Q-TF-BJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2385" y="38"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kMP-E1-foL">
