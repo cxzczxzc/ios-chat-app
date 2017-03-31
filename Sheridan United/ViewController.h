@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
+{
+    
+    IBOutlet UIButton *loginButtton;
+}
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @end
 
