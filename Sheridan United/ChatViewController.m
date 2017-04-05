@@ -12,23 +12,34 @@
 #import "JSQMessagesViewController/JSQMessage.h"
 #import "JSQMessagesBubbleImageFactory.h"
 #import "JSQMessageAvatarImageDataSource.h"
-
+#import "JSQPhotoMediaItem.h"
+#import "JSQVideoMediaItem.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+@import  AVKit;
+@import AVFoundation;
+@import FirebaseDatabase;
 @interface ChatViewController ()
 
 @end
 
 @implementation ChatViewController
-@synthesize messages,outgoingBubbleImageData,incomingBubbleImageData,bubbleFactory;
+@synthesize messages,outgoingBubbleImageData,incomingBubbleImageData,bubbleFactory,ref;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor: [UIColor lightGrayColor]];
-
+    self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor: [UIColor greenColor]];
     self.senderId=@"1";
     self.senderDisplayName = @"Mowgli";
     self.messages = [NSMutableArray new];
     
-    // Do any additional setup after loading the view.
+    //connection to Firebase DB created, ref is the root which will provide DB access
+    self.ref=[[FIRDatabase database] reference];
+    //the child location below will store all the messages sent by the app
+    FIRDatabaseReference *msgRef =  [self.ref child:@"messages"];
+    [msgRef setValue:@"This"];
+    [msgRef childByAutoId];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,10 +77,90 @@
 {
     // opening the interface for selecting the image
     printf("Accessory button pressed");
-    UIImagePickerController *imagePicker =[[UIImagePickerController alloc] init];
-    [self presentViewController:imagePicker animated:YES completion:nil];
+    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"Media Message" message:@"Please select a media" preferredStyle:UIAlertControllerStyleActionSheet];
+//    UIImagePickerController *imagePicker =[[UIImagePickerController alloc] init];
+//    imagePicker.delegate=self;
+    UIAlertAction *cancel = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       
+                                   }];
+    UIAlertAction *pickPhoto = [UIAlertAction
+                             actionWithTitle:@"Photo Library"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action)
+                             {
+                                 [self getMediaFrom:[[NSArray alloc] initWithObjects: (NSString *)kUTTypeImage,nil]];
+                             }];
+    UIAlertAction *pickVideo = [UIAlertAction
+                             actionWithTitle:@"Video Library"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action)
+                             {
+                                 [self getMediaFrom:[[NSArray alloc] initWithObjects: (NSString *)kUTTypeMovie,nil]];
+                             }];
+    
+    [sheet addAction:cancel];
+    [sheet addAction:pickPhoto];
+    [sheet addAction:pickVideo];
+   [self presentViewController:sheet animated:YES completion:nil];
 }
+-(void) getMediaFrom : (NSArray *)type
+{
+    
+    UIImagePickerController *mediaPicker =[[UIImagePickerController alloc] init];
+    mediaPicker.delegate=self;
+    mediaPicker.mediaTypes= type;
+    [self presentViewController:mediaPicker animated:YES completion:nil];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    JSQMessage *mediaMsg;
+    if([info[UIImagePickerControllerMediaType] isEqualToString:(__bridge NSString *)(kUTTypeImage)])
+    {
+        //if media type is image
+        UIImage *chosenImage = (UIImage *)info[UIImagePickerControllerOriginalImage];
+        JSQPhotoMediaItem *parsedImage = [[JSQPhotoMediaItem alloc] initWithImage:chosenImage];
+        mediaMsg=[[JSQMessage alloc] initWithSenderId:self.senderId
+                                                senderDisplayName:self.senderDisplayName
+                                                             date:[NSDate date]
+                                                            media:parsedImage] ;
 
+        //image
+    }
+    else
+    {
+        // if media type is video
+        NSURL *chosenVideo = (NSURL *)info[UIImagePickerControllerMediaURL ];
+        JSQVideoMediaItem *parsedVideo = [[JSQVideoMediaItem alloc] initWithFileURL:chosenVideo isReadyToPlay:YES];
+        mediaMsg = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:parsedVideo];
+        //video
+    }
+    
+    
+    [self.messages addObject:mediaMsg];
+    [self finishSendingMessageAnimated:YES];
+    printf("success");
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+//method to play video in chat
+-(void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath
+{
+    [super collectionView: collectionView didTapMessageBubbleAtIndexPath:indexPath];
+    JSQMessage *message =self.messages[indexPath.item];
+    JSQVideoMediaItem *mediaItem= (JSQVideoMediaItem *)message.media;
+    if(message.isMediaMessage)
+    {
+        if(mediaItem!=nil){
+            AVPlayer *player =[AVPlayer playerWithURL: mediaItem.fileURL];
+            AVPlayerViewController *playerVC= [[AVPlayerViewController alloc] init];
+            playerVC.player=player;
+            [self presentViewController:playerVC animated:YES completion:nil];
+        }
+    }
+}
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     [super collectionView];

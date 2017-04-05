@@ -11,16 +11,19 @@
 #import "JSQMessagesViewController/JSQMessage.h"
 #import "JSQMessagesBubbleImage.h"
 #import "JSQMessagesBubbleImageFactory.h"
-#define myColor [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]
+#import <MobileCoreServices/MobileCoreServices.h>
+@import FirebaseDatabase;
 @interface ChatViewController : JSQMessagesViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     NSMutableArray *messages;
     JSQMessagesBubbleImage *outgoingBubbleImageData;
     JSQMessagesBubbleImage *incomingBubbleImageData;
     JSQMessagesBubbleImageFactory *bubbleFactory ;
+    FIRDatabaseReference *ref;
 }
 @property(strong,nonatomic) NSMutableArray *messages;
 @property (strong, nonatomic) JSQMessagesBubbleImage *outgoingBubbleImageData;
 @property (strong, nonatomic) JSQMessagesBubbleImage *incomingBubbleImageData;
 @property (strong, nonatomic) JSQMessagesBubbleImageFactory *bubbleFactory;
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 @end
