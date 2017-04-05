@@ -92,6 +92,8 @@
 		AE232AC91E8E1A0A00375D4E /* Sheridan United */ = {
 			isa = PBXGroup;
 			children = (
+				AE232AEB1E8E5AC400375D4E /* ChatViewController.m */,
+				AE232AEA1E8E5AC400375D4E /* ChatViewController.h */,
 				AE232AE61E8E216E00375D4E /* background.jpg */,
 				AE232AE11E8E1A9D00375D4E /* MainViewController.h */,
 				AE232AE21E8E1A9D00375D4E /* MainViewController.m */,
@@ -105,8 +107,6 @@
 				AE232AD81E8E1A0A00375D4E /* LaunchScreen.storyboard */,
 				AE232ADB1E8E1A0A00375D4E /* Info.plist */,
 				AE232ACA1E8E1A0A00375D4E /* Supporting Files */,
-				AE232AEA1E8E5AC400375D4E /* ChatViewController.h */,
-				AE232AEB1E8E5AC400375D4E /* ChatViewController.m */,
 			);
 			path = "Sheridan United";
 			sourceTree = "<group>";
