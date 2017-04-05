@@ -22,9 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
-    self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor: [UIColor colorWithRed:163 green:73 blue:164 alpha:1]      ];
+    self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor: [UIColor lightGrayColor]];
 
-   // self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[myColor];
     self.senderId=@"1";
     self.senderDisplayName = @"Mowgli";
     self.messages = [NSMutableArray new];
@@ -56,18 +55,24 @@
     // adding the message object to the array
     [self.messages addObject:js];
     //refresh the collectionView to tell it that message has been sent
-    [self.collectionView reloadData];
+    //[self.collectionView reloadData];
+    [self finishSendingMessageAnimated:YES];
+
     NSLog(@"%@",messages);
     
 }
 
 -(void)didPressAccessoryButton:(UIButton *)sender
 {
-    
+    // opening the interface for selecting the image
+    printf("Accessory button pressed");
+    UIImagePickerController *imagePicker =[[UIImagePickerController alloc] init];
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    //[super collectionView];
+    [super collectionView];
     NSLog(@"Msg count: %lu",messages.count);
     
     return messages.count;
@@ -80,15 +85,10 @@
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    //creating one cell at a time which will be a container for the message
     JSQMessagesCollectionViewCell  *cell= (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath] ;
     return cell;
 }
-/*-(id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    JSQMessagesBubbleImageFactory *bubble = [[JSQMessagesBubbleImageFactory alloc] init];
-    
-    return [bubble outgoingMessagesBubbleImageWithColor: myColor];
-}*/
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     JSQMessage *message = [messages objectAtIndex:indexPath.item];
@@ -97,14 +97,25 @@
         return self.outgoingBubbleImageData;
     }
     return self.outgoingBubbleImageData;
-      //  JSQMessage *message = [messages objectAtIndex:indexPath.item];
-  //return  [bubbleFactory outgoingMessagesBubbleImageWithColor:myColor];
-    //bubbleFactory outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor: myColor];
+
 }
 //this method is used to feed message data to collection view, i.e., display chat bubbles in the UI
 -(id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
     return nil;
+}
+- (void)finishSendingMessageAnimated:(BOOL)animated {
+    
+    UITextView *textView = self.inputToolbar.contentView.textView;
+    textView.text = nil;
+    [textView.undoManager removeAllActions];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:UITextViewTextDidChangeNotification object:textView];
+    [self.collectionView reloadData];
+    
+    if (self.automaticallyScrollsToMostRecentMessage) {
+        [self scrollToBottomAnimated:animated];
+    }
 }
 @end
