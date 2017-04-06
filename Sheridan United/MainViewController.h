@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MainViewController : UIViewController
+{
+    IBOutlet UIButton *chatBtn;
+}
+@property (strong, nonatomic) IBOutlet UIButton *chatBtn;
 
 @end

@@ -191,6 +191,16 @@
                     <view key="view" contentMode="scaleToFill" id="lQw-ph-J8t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbS-HV-6vf">
+                                <rect key="frame" x="140" y="290" width="33" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Chat"/>
+                                <connections>
+                                    <action selector="chatButtonPressed:" destination="bAr-0b-39L" eventType="touchUpInside" id="w1b-4X-56E"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ga1-2D-rPX">
@@ -201,6 +211,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="chatBtn" destination="tbS-HV-6vf" id="NPr-kd-o7t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eoh-nD-G0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,7 +222,7 @@
         <!--Chat View Controller-->
         <scene sceneID="0vT-Gk-cgY">
             <objects>
-                <viewController id="Wwa-eg-YRv" customClass="ChatViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatVC" id="Wwa-eg-YRv" customClass="ChatViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rfl-7X-kXN"/>
                         <viewControllerLayoutGuide type="bottom" id="yCX-xS-K7g"/>
@@ -237,6 +250,7 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="bAr-0b-39L" kind="relationship" relationship="rootViewController" id="TqD-R4-4rX"/>
+                        <segue destination="Wwa-eg-YRv" kind="presentation" id="9h9-m8-M0d"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IT6-sA-pMF" userLabel="First Responder" sceneMemberID="firstResponder"/>

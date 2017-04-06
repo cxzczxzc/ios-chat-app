@@ -25,5 +25,5 @@
 @property (strong, nonatomic) JSQMessagesBubbleImage *outgoingBubbleImageData;
 @property (strong, nonatomic) JSQMessagesBubbleImage *incomingBubbleImageData;
 @property (strong, nonatomic) JSQMessagesBubbleImageFactory *bubbleFactory;
-@property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (retain, nonatomic) FIRDatabaseReference *ref;
 @end

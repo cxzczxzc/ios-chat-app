@@ -38,7 +38,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (IBAction)chatButtonPressed:(id)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
+    //From main storyboard instantiate a View Controller
+    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"ChatVC"];
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:vc animated:YES completion:NULL];
+    //Get the app delegate
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    //Set navigation controller as root view controller
+    appDelegate.window.rootViewController = vc;
+}
 /*
 #pragma mark - Navigation
 

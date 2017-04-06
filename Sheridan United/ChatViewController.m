@@ -18,6 +18,8 @@
 @import  AVKit;
 @import AVFoundation;
 @import FirebaseDatabase;
+@import FirebaseStorage;
+@import FirebaseAuth;
 @interface ChatViewController ()
 
 @end
@@ -26,20 +28,35 @@
 @synthesize messages,outgoingBubbleImageData,incomingBubbleImageData,bubbleFactory,ref;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+   
     self.bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor: [UIColor lightGrayColor]];
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor: [UIColor greenColor]];
-    self.senderId=@"1";
+    FIRUser *currentUser= [[FIRAuth auth]currentUser];
+    self.senderId=currentUser.uid;
     self.senderDisplayName = @"Mowgli";
     self.messages = [NSMutableArray new];
     
+    NSLog(@"user id %@", currentUser.uid);
+    
     //connection to Firebase DB created, ref is the root which will provide DB access
-    self.ref=[[FIRDatabase database] reference];
+    self.ref=[[FIRDatabase database] reference ];
     //the child location below will store all the messages sent by the app
-    FIRDatabaseReference *msgRef =  [self.ref child:@"messages"];
-    [msgRef setValue:@"This"];
-    [msgRef childByAutoId];
+    //childbyautoid sends each message to a unique location so that no message loss happens
+    //----------
+//    FIRDatabaseReference *msgRef =  [[self.ref child:@"messages"] childByAutoId];
+//    [msgRef setValue:@"this"];
+//    [[self.ref child:@"messages" ] observeEventType:FIRDataEventTypeChildAdded withBlock:
+//     ^(FIRDataSnapshot *snapshot)
+//    {
+//      
+//        NSString *str = snapshot.value;
+//        NSLog(@"Dictionry: %@ ", str);
+//
+//    }];
+//    
+//
+    [self observeMessages];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,10 +73,57 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)observeMessages
+{
+    [[self.ref child:@"messages" ] observeEventType:FIRDataEventTypeChildAdded withBlock:
+          ^(FIRDataSnapshot *snapshot)
+         {
+             NSDictionary *dict = snapshot.value;
+             NSString *media= [dict objectForKey:@"mediaType"];
+             NSString *senderId = [dict objectForKey:@"senderID"];
+             NSString *senderName = [dict objectForKey:@"senderDisplayName"];
+              NSString *text = [dict objectForKey:@"text"];
+             if(text)
+             {
+             JSQMessage *js=[[JSQMessage alloc] initWithSenderId:senderId
+                                               senderDisplayName:senderName
+                                                            date:[NSDate date]
+                                                           text:text ];
+             
+                 [self.messages addObject: js];
+             }
+             else if ([media isEqualToString:@"Photo"])
+             {
+//                 
+//                 JSQPhotoMediaItem *parsedImage = [[JSQPhotoMediaItem alloc] initWithImage:chosenImage];
+//                 JSQMessage *mediaMsg=[[JSQMessage alloc] initWithSenderId:self.senderId
+//                                             senderDisplayName:self.senderDisplayName
+//                                                          date:[NSDate date]
+//                                                         media:parsedImage] ;
+//                 [self.messages addObject:mediaMsg];
+   
+             }
+             [self finishSendingMessageAnimated:YES];
+
+
+         }];
+     
+    
+//
+    
+
+}
 -(void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)senderDisplayName date:(NSDate *)date
 {
+    FIRDatabaseReference *newMessage=  [[self.ref child:@"messages"] childByAutoId];
+    NSMutableDictionary *messageData = [[NSMutableDictionary alloc] init];
+    [messageData setValue:text forKey:@"text"];
+    [messageData setValue:senderId forKey:@"senderID"];
+    [messageData setValue:senderDisplayName forKey:@"senderDisplayName"];
+    [messageData setValue:@"TEXT" forKey:@"mediaType"];
+    [newMessage setValue:messageData];
   //creating a message object that contains info of one message
-    JSQMessage *js=[[JSQMessage alloc] initWithSenderId:senderId
+    /*JSQMessage *js=[[JSQMessage alloc] initWithSenderId:senderId
                                       senderDisplayName:senderDisplayName
                                                    date:date
                                                    text:text ];
@@ -69,7 +133,7 @@
     //[self.collectionView reloadData];
     [self finishSendingMessageAnimated:YES];
 
-    NSLog(@"%@",messages);
+    NSLog(@"%@",messages);*/
     
 }
 
@@ -119,6 +183,7 @@
     JSQMessage *mediaMsg;
     if([info[UIImagePickerControllerMediaType] isEqualToString:(__bridge NSString *)(kUTTypeImage)])
     {
+        
         //if media type is image
         UIImage *chosenImage = (UIImage *)info[UIImagePickerControllerOriginalImage];
         JSQPhotoMediaItem *parsedImage = [[JSQPhotoMediaItem alloc] initWithImage:chosenImage];
@@ -126,6 +191,13 @@
                                                 senderDisplayName:self.senderDisplayName
                                                              date:[NSDate date]
                                                             media:parsedImage] ;
+        if ([mediaMsg.senderId isEqualToString:self.senderId]) {
+            parsedImage.appliesMediaViewMaskAsOutgoing=YES;
+        }
+        else {
+            parsedImage.appliesMediaViewMaskAsOutgoing=NO;
+        }
+        [self sendImageToDatabase:chosenImage];
 
         //image
     }
@@ -135,6 +207,13 @@
         NSURL *chosenVideo = (NSURL *)info[UIImagePickerControllerMediaURL ];
         JSQVideoMediaItem *parsedVideo = [[JSQVideoMediaItem alloc] initWithFileURL:chosenVideo isReadyToPlay:YES];
         mediaMsg = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:parsedVideo];
+        if ([mediaMsg.senderId isEqualToString:self.senderId]) {
+            parsedVideo.appliesMediaViewMaskAsOutgoing=YES;
+        }
+        else {
+            parsedVideo.appliesMediaViewMaskAsOutgoing=NO;
+        }
+        [self sendVideoToDatabase:chosenVideo];
         //video
     }
     
@@ -187,7 +266,7 @@
     if ([message.senderId isEqualToString:self.senderId]) {
         return self.outgoingBubbleImageData;
     }
-    return self.outgoingBubbleImageData;
+    return self.incomingBubbleImageData;
 
 }
 //this method is used to feed message data to collection view, i.e., display chat bubbles in the UI
@@ -208,5 +287,33 @@
     if (self.automaticallyScrollsToMostRecentMessage) {
         [self scrollToBottomAnimated:animated];
     }
+}
+-(void)sendImageToDatabase:(UIImage*)pic
+{
+    FIRStorageReference *storage = [[FIRStorage storage]reference];
+     NSTimeInterval interval = [[[NSDate alloc]init ]timeIntervalSinceReferenceDate];
+    NSString *username=(NSString *)[[FIRAuth auth] currentUser];
+    NSString *filepath= [NSString stringWithFormat: @"%@/%f", username,interval];
+    FIRStorageReference *child=[storage child: filepath];
+    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc]init] ;
+    metadata.contentType=@"image/jpg";
+    NSData *data = UIImageJPEGRepresentation(pic, 1);
+    //put data method used to upload media to Firebase db
+    [child putData:data metadata:metadata];
+    NSArray *fileUrl = [[NSArray alloc] initWithObjects: metadata.downloadURLs[0] ,nil];
+    NSLog(@"FiLEURL is%@", [fileUrl lastObject]);
+    NSLog(@"path %@", metadata.downloadURLs);
+    NSMutableDictionary *messageData = [[NSMutableDictionary alloc] init];
+    [messageData setValue:self.senderId forKey:@"senderID"];
+    [messageData setValue:self.senderDisplayName forKey:@"senderDisplayName"];
+    [messageData setValue:@"Photo" forKey:@"mediaType"];
+    //[messageData setValue:fileUrl forKey:@"text"];
+    FIRDatabaseReference *newMessage =  [[self.ref child:@"messages"] childByAutoId];
+    [newMessage setValue:messageData];
+
+}
+-(void)sendVideoToDatabase:(NSURL*)vdo
+{
+    
 }
 @end
