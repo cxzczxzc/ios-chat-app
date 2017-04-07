@@ -86,12 +86,12 @@
                                              senderDisplayName:self.senderDisplayName
                                                           date:[NSDate date]
                                                          media:parsedImage] ;
-                // [self.messages addObject:js];
              }
              else
              {
                  JSQVideoMediaItem *parsedVideo = [[JSQVideoMediaItem alloc] initWithFileURL:fileUrl isReadyToPlay:YES];
                  js = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:parsedVideo];
+                 
                  
                  
              }
@@ -117,28 +117,12 @@
     [messageData setValue:senderDisplayName forKey:@"senderDisplayName"];
     [messageData setValue:@"TEXT" forKey:@"mediaType"];
     [newMessage setValue:messageData];
-  //creating a message object that contains info of one message
-    /*JSQMessage *js=[[JSQMessage alloc] initWithSenderId:senderId
-                                      senderDisplayName:senderDisplayName
-                                                   date:date
-                                                   text:text ];
-    // adding the message object to the array
-    [self.messages addObject:js];
-    //refresh the collectionView to tell it that message has been sent
-    //[self.collectionView reloadData];
-    [self finishSendingMessageAnimated:YES];
-
-    NSLog(@"%@",messages);*/
-    
 }
 
 -(void)didPressAccessoryButton:(UIButton *)sender
 {
-    // opening the interface for selecting the image
     printf("Accessory button pressed");
     UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"Media Message" message:@"Please select a media" preferredStyle:UIAlertControllerStyleActionSheet];
-//    UIImagePickerController *imagePicker =[[UIImagePickerController alloc] init];
-//    imagePicker.delegate=self;
     UIAlertAction *cancel = [UIAlertAction
                                    actionWithTitle:@"Cancel"
                                    style:UIAlertActionStyleCancel
@@ -175,47 +159,23 @@
     [self presentViewController:mediaPicker animated:YES completion:nil];
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    JSQMessage *mediaMsg;
     if([info[UIImagePickerControllerMediaType] isEqualToString:(__bridge NSString *)(kUTTypeImage)])
     {
-        
         //if media type is image
         UIImage *chosenImage = (UIImage *)info[UIImagePickerControllerOriginalImage];
-        JSQPhotoMediaItem *parsedImage = [[JSQPhotoMediaItem alloc] initWithImage:chosenImage];
-        mediaMsg=[[JSQMessage alloc] initWithSenderId:self.senderId
-                                                senderDisplayName:self.senderDisplayName
-                                                             date:[NSDate date]
-                                                            media:parsedImage] ;
-        if ([mediaMsg.senderId isEqualToString:self.senderId]) {
-            parsedImage.appliesMediaViewMaskAsOutgoing=YES;
-        }
-        else {
-            parsedImage.appliesMediaViewMaskAsOutgoing=NO;
-        }
         [self sendImageToDatabase:chosenImage];
-
         //image
     }
     else
     {
         // if media type is video
         NSURL *chosenVideo = (NSURL *)info[UIImagePickerControllerMediaURL ];
-        JSQVideoMediaItem *parsedVideo = [[JSQVideoMediaItem alloc] initWithFileURL:chosenVideo isReadyToPlay:YES];
-        mediaMsg = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:parsedVideo];
-        if ([mediaMsg.senderId isEqualToString:self.senderId]) {
-            parsedVideo.appliesMediaViewMaskAsOutgoing=YES;
-        }
-        else {
-            parsedVideo.appliesMediaViewMaskAsOutgoing=NO;
-        }
         [self sendVideoToDatabase:chosenVideo];
         //video
     }
     
     
-    [self.messages addObject:mediaMsg];
     [self finishSendingMessageAnimated:YES];
-    printf("success");
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
@@ -339,11 +299,8 @@
              [messageData setValue:self.senderId forKey:@"senderID"];
              [messageData setValue:self.senderDisplayName forKey:@"senderDisplayName"];
              [messageData setValue:@"Video" forKey:@"mediaType"];
-             //[messageData setValue:fileUrl forKey:@"text"];
              FIRDatabaseReference *newMessage =  [[self.ref child:@"messages"] childByAutoId];
              [newMessage setValue:messageData];
-             //profileImageURL = metadata.downloadURL.absoluteString;
-             //[self saveValuesForUser: currentUser];
          }
          else if (error)
          {

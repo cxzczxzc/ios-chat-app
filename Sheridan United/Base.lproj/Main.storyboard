@@ -242,7 +242,7 @@
             <objects>
                 <navigationController storyboardIdentifier="NavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="yX6-cg-ecu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LeO-hC-GYK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LeO-hC-GYK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.11262581497430801" green="0.56269413232803345" blue="0.96241146326065063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
