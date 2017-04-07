@@ -36,26 +36,9 @@
     self.senderId=currentUser.uid;
     self.senderDisplayName = @"Mowgli";
     self.messages = [NSMutableArray new];
-    
     NSLog(@"user id %@", currentUser.uid);
-    
     //connection to Firebase DB created, ref is the root which will provide DB access
     self.ref=[[FIRDatabase database] reference ];
-    //the child location below will store all the messages sent by the app
-    //childbyautoid sends each message to a unique location so that no message loss happens
-    //----------
-//    FIRDatabaseReference *msgRef =  [[self.ref child:@"messages"] childByAutoId];
-//    [msgRef setValue:@"this"];
-//    [[self.ref child:@"messages" ] observeEventType:FIRDataEventTypeChildAdded withBlock:
-//     ^(FIRDataSnapshot *snapshot)
-//    {
-//      
-//        NSString *str = snapshot.value;
-//        NSLog(@"Dictionry: %@ ", str);
-//
-//    }];
-//    
-//
     [self observeMessages];
 }
 
@@ -82,27 +65,39 @@
              NSString *media= [dict objectForKey:@"mediaType"];
              NSString *senderId = [dict objectForKey:@"senderID"];
              NSString *senderName = [dict objectForKey:@"senderDisplayName"];
-              NSString *text = [dict objectForKey:@"text"];
-             if(text)
+             NSString *text = [dict objectForKey:@"text"];
+             NSURL *fileUrl =[dict objectForKey:@"fileUrl"];
+             JSQMessage *js ;
+             if([media isEqualToString:@"TEXT"] )
              {
-             JSQMessage *js=[[JSQMessage alloc] initWithSenderId:senderId
+             js=[[JSQMessage alloc] initWithSenderId:senderId
                                                senderDisplayName:senderName
                                                             date:[NSDate date]
                                                            text:text ];
              
-                 [self.messages addObject: js];
-             }
-             else if ([media isEqualToString:@"Photo"])
+                
+            }
+             else if([media isEqualToString:@"Photo"])
              {
-//                 
-//                 JSQPhotoMediaItem *parsedImage = [[JSQPhotoMediaItem alloc] initWithImage:chosenImage];
-//                 JSQMessage *mediaMsg=[[JSQMessage alloc] initWithSenderId:self.senderId
-//                                             senderDisplayName:self.senderDisplayName
-//                                                          date:[NSDate date]
-//                                                         media:parsedImage] ;
-//                 [self.messages addObject:mediaMsg];
-   
+                 NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:(NSString*)fileUrl]];
+                 UIImage *pic=[UIImage imageWithData:data];
+                 JSQPhotoMediaItem *parsedImage = [[JSQPhotoMediaItem alloc] initWithImage:pic];
+                 js=[[JSQMessage alloc] initWithSenderId:self.senderId
+                                             senderDisplayName:self.senderDisplayName
+                                                          date:[NSDate date]
+                                                         media:parsedImage] ;
+                // [self.messages addObject:js];
              }
+             else
+             {
+                 JSQVideoMediaItem *parsedVideo = [[JSQVideoMediaItem alloc] initWithFileURL:fileUrl isReadyToPlay:YES];
+                 js = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:parsedVideo];
+                 
+                 
+             }
+             
+
+              [self.messages addObject: js];
              [self finishSendingMessageAnimated:YES];
 
 
@@ -290,30 +285,71 @@
 }
 -(void)sendImageToDatabase:(UIImage*)pic
 {
-    FIRStorageReference *storage = [[FIRStorage storage]reference];
+    FIRStorageReference *storage = [[FIRStorage storage]referenceForURL:@"gs://sheridan-united.appspot.com/"];
      NSTimeInterval interval = [[[NSDate alloc]init ]timeIntervalSinceReferenceDate];
     NSString *username=(NSString *)[[FIRAuth auth] currentUser];
     NSString *filepath= [NSString stringWithFormat: @"%@/%f", username,interval];
     FIRStorageReference *child=[storage child: filepath];
     FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc]init] ;
     metadata.contentType=@"image/jpg";
-    NSData *data = UIImageJPEGRepresentation(pic, 1);
-    //put data method used to upload media to Firebase db
-    [child putData:data metadata:metadata];
-    NSArray *fileUrl = [[NSArray alloc] initWithObjects: metadata.downloadURLs[0] ,nil];
-    NSLog(@"FiLEURL is%@", [fileUrl lastObject]);
-    NSLog(@"path %@", metadata.downloadURLs);
-    NSMutableDictionary *messageData = [[NSMutableDictionary alloc] init];
-    [messageData setValue:self.senderId forKey:@"senderID"];
-    [messageData setValue:self.senderDisplayName forKey:@"senderDisplayName"];
-    [messageData setValue:@"Photo" forKey:@"mediaType"];
-    //[messageData setValue:fileUrl forKey:@"text"];
-    FIRDatabaseReference *newMessage =  [[self.ref child:@"messages"] childByAutoId];
-    [newMessage setValue:messageData];
+    NSData *imageData = UIImageJPEGRepresentation(pic, 0.8);
+    [child putData:imageData metadata:metadata completion:^(FIRStorageMetadata *metadata, NSError *error)
+     {
+         if (!error)
+         {
+             NSString *fileUrl=metadata.downloadURLs[0].absoluteString;
+             NSLog(@"gadarrrr %@", metadata.downloadURLs[0].absoluteString);
+             NSMutableDictionary *messageData = [[NSMutableDictionary alloc] init];
+             [messageData setValue:fileUrl forKey:@"fileUrl"];
+             [messageData setValue:self.senderId forKey:@"senderID"];
+             [messageData setValue:self.senderDisplayName forKey:@"senderDisplayName"];
+             [messageData setValue:@"Photo" forKey:@"mediaType"];
+             //[messageData setValue:fileUrl forKey:@"text"];
+             FIRDatabaseReference *newMessage =  [[self.ref child:@"messages"] childByAutoId];
+             [newMessage setValue:messageData];
+             //profileImageURL = metadata.downloadURL.absoluteString;
+             //[self saveValuesForUser: currentUser];
+         }
+         else if (error)
+         {
+             NSLog(@"Failed to save image message %@",error.description);
+         }
+     }];
+
 
 }
 -(void)sendVideoToDatabase:(NSURL*)vdo
 {
-    
+    FIRStorageReference *storage = [[FIRStorage storage]referenceForURL:@"gs://sheridan-united.appspot.com/"];
+    NSTimeInterval interval = [[[NSDate alloc]init ]timeIntervalSinceReferenceDate];
+    NSString *username=(NSString *)[[FIRAuth auth] currentUser];
+    NSString *filepath= [NSString stringWithFormat: @"%@/%f", username,interval];
+    FIRStorageReference *child=[storage child: filepath];
+    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc]init] ;
+    metadata.contentType=@"video/mp4";
+    NSData *videoData = [NSData dataWithContentsOfURL:vdo];
+    [child putData:videoData metadata:metadata completion:^(FIRStorageMetadata *metadata, NSError *error)
+     {
+         if (!error)
+         {
+             NSString *fileUrl=metadata.downloadURLs[0].absoluteString;
+             NSLog(@"gadarrrr %@", metadata.downloadURLs[0].absoluteString);
+             NSMutableDictionary *messageData = [[NSMutableDictionary alloc] init];
+             [messageData setValue:fileUrl forKey:@"fileUrl"];
+             [messageData setValue:self.senderId forKey:@"senderID"];
+             [messageData setValue:self.senderDisplayName forKey:@"senderDisplayName"];
+             [messageData setValue:@"Video" forKey:@"mediaType"];
+             //[messageData setValue:fileUrl forKey:@"text"];
+             FIRDatabaseReference *newMessage =  [[self.ref child:@"messages"] childByAutoId];
+             [newMessage setValue:messageData];
+             //profileImageURL = metadata.downloadURL.absoluteString;
+             //[self saveValuesForUser: currentUser];
+         }
+         else if (error)
+         {
+             NSLog(@"Failed to save video message %@", error.description);
+         }
+     }];
+  
 }
 @end

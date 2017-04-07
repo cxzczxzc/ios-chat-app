@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "AppDelegate.h"
+@import FirebaseAuth;
 @interface MainViewController ()
 
 @end
@@ -19,6 +20,12 @@
     // Do any additional setup after loading the view.
 }
 - (IBAction)logOutDidTapped:(id)sender {
+    NSError *signOutError;
+    BOOL status = [[FIRAuth auth] signOut:&signOutError];
+    if (!status) {
+        NSLog(@"Error signing out: %@", signOutError);
+        return;
+    }
     printf("logOutDidTapped pressed");
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
     //From main storyboard instantiate a View Controller
