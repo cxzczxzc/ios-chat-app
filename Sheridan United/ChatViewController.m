@@ -56,57 +56,75 @@
     // Pass the selected object to the new view controller.
 }
 */
+// this method retrieves data from Firebase and displays it in the chat
+// ---------------------------------IMPORTANT METHOD---------------------------------//
 -(void)observeMessages
 {
-    [[self.ref child:@"messages" ] observeEventType:FIRDataEventTypeChildAdded withBlock:
-          ^(FIRDataSnapshot *snapshot)
+[[self.ref child:@"messages" ] observeEventType:FIRDataEventTypeChildAdded withBlock:
+      ^(FIRDataSnapshot *snapshot)
+     {
+         NSDictionary *dict = snapshot.value;
+         NSString *media= [dict objectForKey:@"mediaType"];
+         NSString *senderId = [dict objectForKey:@"senderID"];
+         NSString *senderName = [dict objectForKey:@"senderDisplayName"];
+         NSString *text = [dict objectForKey:@"text"];
+         NSURL *fileUrl =[dict objectForKey:@"fileUrl"];
+         JSQMessage *js ;
+         if([media isEqualToString:@"TEXT"] )
          {
-             NSDictionary *dict = snapshot.value;
-             NSString *media= [dict objectForKey:@"mediaType"];
-             NSString *senderId = [dict objectForKey:@"senderID"];
-             NSString *senderName = [dict objectForKey:@"senderDisplayName"];
-             NSString *text = [dict objectForKey:@"text"];
-             NSURL *fileUrl =[dict objectForKey:@"fileUrl"];
-             JSQMessage *js ;
-             if([media isEqualToString:@"TEXT"] )
-             {
-             js=[[JSQMessage alloc] initWithSenderId:senderId
-                                               senderDisplayName:senderName
-                                                            date:[NSDate date]
-                                                           text:text ];
+         js=[[JSQMessage alloc] initWithSenderId:senderId
+                                           senderDisplayName:senderName
+                                                        date:[NSDate date]
+                                                       text:text ];
+         
+            
+        }
+         else if([media isEqualToString:@"Photo"])
+         {
              
-                
-            }
-             else if([media isEqualToString:@"Photo"])
-             {
-                 NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:(NSString*)fileUrl]];
-                 UIImage *pic=[UIImage imageWithData:data];
-                 JSQPhotoMediaItem *parsedImage = [[JSQPhotoMediaItem alloc] initWithImage:pic];
-                 js=[[JSQMessage alloc] initWithSenderId:self.senderId
-                                             senderDisplayName:self.senderDisplayName
-                                                          date:[NSDate date]
-                                                         media:parsedImage] ;
+             NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:(NSString*)fileUrl]];
+             UIImage *pic=[UIImage imageWithData:data];
+             
+             JSQPhotoMediaItem *parsedImage = [[JSQPhotoMediaItem alloc] initWithImage:pic];
+             js=[[JSQMessage alloc] initWithSenderId:self.senderId
+                                   senderDisplayName:self.senderDisplayName
+                                                date:[NSDate date]
+                                               media:parsedImage] ;
+             if (![js.senderId isEqualToString:self.senderId]) {
+                 NSLog(@"jaggi");
+                 [parsedImage setAppliesMediaViewMaskAsOutgoing:NO];
+                // [parsedImage appliesMediaViewMaskAsOutgoing];
              }
+//
              else
              {
-                 JSQVideoMediaItem *parsedVideo = [[JSQVideoMediaItem alloc] initWithFileURL:fileUrl isReadyToPlay:YES];
-                 js = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:parsedVideo];
-                 
-                 
-                 
+                 NSLog(@"jafaggafi");
+                [parsedImage appliesMediaViewMaskAsOutgoing];
+             }
+            
+             
+         }
+         else
+         {
+             JSQVideoMediaItem *parsedVideo = [[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:fileUrl] isReadyToPlay:YES];
+             if ([js.senderId isEqualToString:self.senderId]) {
+                 //[parsedVideo appliesMediaViewMaskAsOutgoing];
+                 [parsedVideo setAppliesMediaViewMaskAsOutgoing:NO];
              }
              
+             else
+             {
+                 [parsedVideo setAppliesMediaViewMaskAsOutgoing:NO];
+             }
 
-              [self.messages addObject: js];
-             [self finishSendingMessageAnimated:YES];
+             js = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:parsedVideo];
+                      }
+         
+         [self.messages addObject: js];
+         [self finishSendingMessageAnimated:YES];
 
 
-         }];
-     
-    
-//
-    
-
+     }];
 }
 -(void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)senderDisplayName date:(NSDate *)date
 {
@@ -214,14 +232,16 @@
     JSQMessagesCollectionViewCell  *cell= (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath] ;
     return cell;
 }
+
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     JSQMessage *message = [messages objectAtIndex:indexPath.item];
     
-    if ([message.senderId isEqualToString:self.senderId]) {
-        return self.outgoingBubbleImageData;
+    if (![message.senderId isEqualToString:self.senderId]) {
+        return self.incomingBubbleImageData;
+        
     }
-    return self.incomingBubbleImageData;
+    return self.outgoingBubbleImageData;
 
 }
 //this method is used to feed message data to collection view, i.e., display chat bubbles in the UI
@@ -243,6 +263,7 @@
         [self scrollToBottomAnimated:animated];
     }
 }
+//UPLOAD PIC SENT BY USER TO DB
 -(void)sendImageToDatabase:(UIImage*)pic
 {
     FIRStorageReference *storage = [[FIRStorage storage]referenceForURL:@"gs://sheridan-united.appspot.com/"];
@@ -278,6 +299,7 @@
 
 
 }
+//UPLOAD VIDEO SENT BY USER TO DB
 -(void)sendVideoToDatabase:(NSURL*)vdo
 {
     FIRStorageReference *storage = [[FIRStorage storage]referenceForURL:@"gs://sheridan-united.appspot.com/"];
@@ -293,7 +315,6 @@
          if (!error)
          {
              NSString *fileUrl=metadata.downloadURLs[0].absoluteString;
-             NSLog(@"gadarrrr %@", metadata.downloadURLs[0].absoluteString);
              NSMutableDictionary *messageData = [[NSMutableDictionary alloc] init];
              [messageData setValue:fileUrl forKey:@"fileUrl"];
              [messageData setValue:self.senderId forKey:@"senderID"];

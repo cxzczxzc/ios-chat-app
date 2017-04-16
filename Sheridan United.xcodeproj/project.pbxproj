@@ -18,6 +18,8 @@
 		AE232AE71E8E216E00375D4E /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE232AE61E8E216E00375D4E /* background.jpg */; };
 		AE232AE91E8E2E8B00375D4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE232AE81E8E2E8B00375D4E /* GoogleService-Info.plist */; };
 		AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE232AEB1E8E5AC400375D4E /* ChatViewController.m */; };
+		AE5FF5CF1EA20EDE00CC4C1C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */; };
+		AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,9 @@
 		AE232AE81E8E2E8B00375D4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE232AEA1E8E5AC400375D4E /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		AE232AEB1E8E5AC400375D4E /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		AE5FF5CD1EA20EDE00CC4C1C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2017-04-15 at 5.08.30 AM.png"; sourceTree = "<group>"; };
 		EF2E5F915F8735B83C517255 /* Pods-Sheridan United.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sheridan United.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sheridan United/Pods-Sheridan United.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +97,9 @@
 		AE232AC91E8E1A0A00375D4E /* Sheridan United */ = {
 			isa = PBXGroup;
 			children = (
+				AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */,
+				AE5FF5CD1EA20EDE00CC4C1C /* RegisterViewController.h */,
+				AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */,
 				AE232AEB1E8E5AC400375D4E /* ChatViewController.m */,
 				AE232AEA1E8E5AC400375D4E /* ChatViewController.h */,
 				AE232AE61E8E216E00375D4E /* background.jpg */,
@@ -184,6 +192,7 @@
 				AE232AE71E8E216E00375D4E /* background.jpg in Resources */,
 				AE232AE91E8E2E8B00375D4E /* GoogleService-Info.plist in Resources */,
 				AE232AD71E8E1A0A00375D4E /* Assets.xcassets in Resources */,
+				AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */,
 				AE232AD51E8E1A0A00375D4E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE232AD21E8E1A0A00375D4E /* ViewController.m in Sources */,
+				AE5FF5CF1EA20EDE00CC4C1C /* RegisterViewController.m in Sources */,
 				AE232ACF1E8E1A0A00375D4E /* AppDelegate.m in Sources */,
 				AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */,
 				AE232AE31E8E1A9D00375D4E /* MainViewController.m in Sources */,
