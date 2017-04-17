@@ -43,69 +43,29 @@
 
 - (IBAction)loginDidTapped:(id)sender {
     //validate email and password inputs
-if (emailTextField.text.length > 0 && passwordTextField.text.length>0) {
-    if (signInSelector.selectedSegmentIndex==0) {
+        if (emailTextField.text.length > 0 && passwordTextField.text.length>0)
+        {
         //sign in
         //Firebase verifies user
         [[FIRAuth auth] signInWithEmail:emailTextField.text
                                password:passwordTextField.text
                              completion:^(FIRUser *user, NSError *error) {
                                  if (user) {
-                                    
                                      [self openChat];
                                  }
-                                 else
-                                 {
+                                 else{
                                      errorLabel.text =@"Unable to sign in!";
                                  }
                              }];
-           }
-    else {
-        //register
-        //Firebase adds the user
-      [[FIRAuth auth]
-         createUserWithEmail:emailTextField.text
-         password:passwordTextField.text
-         completion:^(FIRUser *_Nullable user,
-                      NSError *_Nullable error) {
-             if (user) {
-                //user found
-                 [self openChat];
-             }
-             else
-             {
-                 errorLabel.text=@"Unable to register!";
-             }
          }
-       ];
-        
-    }
-}
-else
-{
-    errorLabel.text=@"Please check your input!";
+        else
+        {
+            errorLabel.text=@"Please check your input!";
 
-    //error handling
+            //error handling
+        }
 }
-}
-- (IBAction)signInSelectorChanged:(UISegmentedControl *)sender {
-    [self getSelectorOption];
-}
--(void)getSelectorOption
-{
-    NSInteger state= signInSelector.selectedSegmentIndex;
-    if (state==0)
-    {
-        signInLabel.text = @"Sign In";
-        [loginButton setTitle:@"Login" forState:UIControlStateNormal];
-    }
-    else if (state==1)
-    {
-        signInLabel.text = @"Create Account";
-        [loginButton setTitle:@"Register" forState:UIControlStateNormal];
-        
-    }
-}
+
 - (IBAction)registerDidTapped:(id)sender {
     [self performSegueWithIdentifier:@"LoginToRegister" sender:self];
     }
