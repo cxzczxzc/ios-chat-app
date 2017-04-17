@@ -151,6 +151,19 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5a-D5-3m6">
+                                <rect key="frame" x="141" y="594" width="81" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="2oR-ou-hJ0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerDidTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="010-FB-XYa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -174,6 +187,8 @@
                         <outlet property="passwordTextField" destination="Qjf-lO-hKc" id="HIf-Xz-hdM"/>
                         <outlet property="signInLabel" destination="0uv-8T-t31" id="Fp5-KR-ld1"/>
                         <outlet property="signInSelector" destination="DmP-z7-ZL2" id="5cu-X7-fJJ"/>
+                        <segue destination="We0-qA-fc9" kind="presentation" identifier="LoginToRegister" id="wlZ-oy-0zF"/>
+                        <segue destination="yX6-cg-ecu" kind="presentation" id="KG7-3o-4SX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -192,29 +207,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ylx-q8-QpT">
-                                <rect key="frame" x="86" y="216" width="204" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ylx-q8-QpT">
+                                <rect key="frame" x="45" y="231" width="284" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Xl-6X-tHn">
-                                <rect key="frame" x="86" y="291" width="204" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Xl-6X-tHn">
+                                <rect key="frame" x="45" y="296" width="284" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m0a-Jb-Vo7">
-                                <rect key="frame" x="86" y="361" width="204" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LP7-HX-moF">
-                                <rect key="frame" x="68" y="50" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profilebackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="LP7-HX-moF">
+                                <rect key="frame" x="105" y="57" width="165" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qF9-JY-IlS">
@@ -225,18 +233,46 @@
                                     <action selector="registerButtonDidTap:" destination="We0-qA-fc9" eventType="touchUpInside" id="an9-Js-HyC"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bAG-tu-ejP">
+                                <rect key="frame" x="45" y="272" width="284" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZT-dI-zmE">
+                                <rect key="frame" x="45" y="334" width="284" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m0a-Jb-Vo7">
+                                <rect key="frame" x="45" y="350" width="284" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAC-wf-Esj">
+                                <rect key="frame" x="28" y="38" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="Eyy-Lp-O4C" kind="unwind" unwindAction="unwindToThisViewController:" id="Dxx-BY-UR5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="emailTf" destination="9Xl-6X-tHn" id="g8G-hX-Dbt"/>
-                        <outlet property="imgView" destination="LP7-HX-moF" id="7pB-Dl-Gsy"/>
+                        <outlet property="imgView" destination="LP7-HX-moF" id="xIn-2z-fZb"/>
                         <outlet property="nameTf" destination="Ylx-q8-QpT" id="9OU-8V-2mP"/>
                         <outlet property="passwordTf" destination="m0a-Jb-Vo7" id="GEJ-Sp-9bn"/>
                         <outlet property="registerButton" destination="qF9-JY-IlS" id="vgC-ZJ-l7d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQN-PW-nml" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Eyy-Lp-O4C" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="789.35532233883066"/>
         </scene>
@@ -311,6 +347,7 @@
                     <connections>
                         <segue destination="bAr-0b-39L" kind="relationship" relationship="rootViewController" id="TqD-R4-4rX"/>
                         <segue destination="Wwa-eg-YRv" kind="presentation" id="9h9-m8-M0d"/>
+                        <segue destination="We0-qA-fc9" kind="presentation" id="Id9-bN-z1g"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IT6-sA-pMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -320,5 +357,9 @@
     </scenes>
     <resources>
         <image name="background.jpg" width="1080" height="1920"/>
+        <image name="profilebackground.png" width="500" height="500"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wlZ-oy-0zF"/>
+    </inferredMetricsTieBreakers>
 </document>

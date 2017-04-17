@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "RegisterViewController.h"
 @import Firebase;
 @import FirebaseAuth;
 
@@ -16,7 +17,7 @@
 @end
 
 @implementation ViewController
-@synthesize loginButton,errorLabel,passwordTextField,emailTextField,signInLabel,signInSelector;
+@synthesize loginButton,errorLabel,registerButtton,passwordTextField,emailTextField,signInLabel,signInSelector;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -26,6 +27,7 @@
     [super viewDidAppear:YES];
     [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth * _Nonnull auth, FIRUser * _Nullable user) {
         if (user) {
+             NSLog(@"User's name %@", user.displayName);
             [self openChat];
             NSLog(@"User is signed in with uid: %@", user.uid);
         } else {
@@ -49,6 +51,7 @@ if (emailTextField.text.length > 0 && passwordTextField.text.length>0) {
                                password:passwordTextField.text
                              completion:^(FIRUser *user, NSError *error) {
                                  if (user) {
+                                    
                                      [self openChat];
                                  }
                                  else
@@ -102,6 +105,13 @@ else
         [loginButton setTitle:@"Register" forState:UIControlStateNormal];
         
     }
+}
+- (IBAction)registerDidTapped:(id)sender {
+    [self performSegueWithIdentifier:@"LoginToRegister" sender:self];
+    }
+-(IBAction)unwindToThisViewController:(UIStoryboardSegue *)sender
+{
+    
 }
 -(void)openChat
 {

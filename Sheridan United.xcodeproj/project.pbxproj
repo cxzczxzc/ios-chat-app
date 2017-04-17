@@ -20,6 +20,7 @@
 		AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE232AEB1E8E5AC400375D4E /* ChatViewController.m */; };
 		AE5FF5CF1EA20EDE00CC4C1C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */; };
 		AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */; };
+		AEA3DF1D1EA441A000AA1A77 /* profilebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		AE5FF5CD1EA20EDE00CC4C1C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2017-04-15 at 5.08.30 AM.png"; sourceTree = "<group>"; };
+		AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilebackground.png; sourceTree = "<group>"; };
 		EF2E5F915F8735B83C517255 /* Pods-Sheridan United.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sheridan United.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sheridan United/Pods-Sheridan United.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 		AE232AC91E8E1A0A00375D4E /* Sheridan United */ = {
 			isa = PBXGroup;
 			children = (
+				AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */,
 				AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */,
 				AE5FF5CD1EA20EDE00CC4C1C /* RegisterViewController.h */,
 				AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */,
@@ -194,6 +197,7 @@
 				AE232AD71E8E1A0A00375D4E /* Assets.xcassets in Resources */,
 				AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */,
 				AE232AD51E8E1A0A00375D4E /* Main.storyboard in Resources */,
+				AEA3DF1D1EA441A000AA1A77 /* profilebackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@
      IBOutlet UISegmentedControl *signInSelector;
     IBOutlet UILabel *errorLabel;
     IBOutlet UITextField *emailTextField;
+     IBOutlet UIButton *registerButtton;
     
     
 }
@@ -26,5 +27,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
 @property (strong, nonatomic) IBOutlet UILabel *errorLabel;
 @property (strong, nonatomic) IBOutlet UILabel *signInLabel;
+@property (strong, nonatomic) IBOutlet UIButton *registerButtton;
 @end
 

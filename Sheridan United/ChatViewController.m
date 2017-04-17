@@ -14,6 +14,7 @@
 #import "JSQMessageAvatarImageDataSource.h"
 #import "JSQPhotoMediaItem.h"
 #import "JSQVideoMediaItem.h"
+#import "JSQMessagesAvatarImageFactory.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 @import  AVKit;
 @import AVFoundation;
@@ -25,10 +26,10 @@
 @end
 
 @implementation ChatViewController
-@synthesize messages,outgoingBubbleImageData,incomingBubbleImageData,bubbleFactory,ref;
+@synthesize messages,avatarDictionary,outgoingBubbleImageData,incomingBubbleImageData,bubbleFactory,ref;
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    self.avatarDictionary=[NSMutableDictionary dictionary];
     self.bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor: [UIColor lightGrayColor]];
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor: [UIColor greenColor]];
@@ -36,10 +37,13 @@
     self.senderId=currentUser.uid;
     self.senderDisplayName = @"Mowgli";
     self.messages = [NSMutableArray new];
-    NSLog(@"user id %@", currentUser.uid);
+    NSLog(@"user id %@", currentUser.photoURL);
     //connection to Firebase DB created, ref is the root which will provide DB access
     self.ref=[[FIRDatabase database] reference ];
     [self observeMessages];
+    
+  
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,8 +59,41 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+//*/
+-(void)setupAvatar:(NSString *)url messageId: (NSString*) m
+{
+    if(url)
+    {
+        NSURL *fileUrl= [NSURL URLWithString:url];
+        NSData *data =[NSData dataWithContentsOfURL:fileUrl];
+        UIImage *image=[UIImage imageWithData:data];
+        JSQMessagesAvatarImage *userImg=[JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30];
+        [avatarDictionary setValue:userImg forKey:m];
+        //[self.avatarDictionary addObject:userImg];
+    }
+    else{
+        UIImage *img=[UIImage imageNamed:@"profilebackground.png"];
+        JSQMessagesAvatarImage *u=[JSQMessagesAvatarImageFactory avatarImageWithImage:img diameter:30];
+        [avatarDictionary setValue:u forKey:m];
+    }
+    [self.collectionView reloadData];
+}
 // this method retrieves data from Firebase and displays it in the chat
+// ---------------------------------IMPORTANT METHOD---------------------------------//
+-(void)observeUsers:(NSString*) id
+{
+
+    [[[self.ref child:@"users"] child: id] observeEventType:FIRDataEventTypeValue withBlock:
+     ^(FIRDataSnapshot *snapshot)
+     {
+         NSDictionary *dict = snapshot.value;
+         NSString *avatarURL=[dict objectForKey:@"profileUrl"];
+         self.senderDisplayName=[dict objectForKey:@"displayName"];
+         NSLog(@"dictionary contents %@",avatarURL);
+         [self setupAvatar:avatarURL messageId:id];
+
+     }];
+}
 // ---------------------------------IMPORTANT METHOD---------------------------------//
 -(void)observeMessages
 {
@@ -70,6 +107,7 @@
          NSString *text = [dict objectForKey:@"text"];
          NSURL *fileUrl =[dict objectForKey:@"fileUrl"];
          JSQMessage *js ;
+         [self observeUsers : senderId];
          if([media isEqualToString:@"TEXT"] )
          {
          js=[[JSQMessage alloc] initWithSenderId:senderId
@@ -90,18 +128,7 @@
                                    senderDisplayName:self.senderDisplayName
                                                 date:[NSDate date]
                                                media:parsedImage] ;
-             if (![js.senderId isEqualToString:self.senderId]) {
-                 NSLog(@"jaggi");
-                 [parsedImage setAppliesMediaViewMaskAsOutgoing:NO];
-                // [parsedImage appliesMediaViewMaskAsOutgoing];
-             }
-//
-             else
-             {
-                 NSLog(@"jafaggafi");
-                [parsedImage appliesMediaViewMaskAsOutgoing];
-             }
-            
+      
              
          }
          else
@@ -126,6 +153,7 @@
 
      }];
 }
+
 -(void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)senderDisplayName date:(NSDate *)date
 {
     FIRDatabaseReference *newMessage=  [[self.ref child:@"messages"] childByAutoId];
@@ -244,12 +272,14 @@
     return self.outgoingBubbleImageData;
 
 }
-//this method is used to feed message data to collection view, i.e., display chat bubbles in the UI
+//method used to set avatar
 -(id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    return nil;
+    JSQMessage *message =[self.messages objectAtIndex:indexPath.item];
+    return [avatarDictionary objectForKey:message.senderId];
 }
+//this method is used to feed message data to collection view, i.e., display chat bubbles in the UI
+
 - (void)finishSendingMessageAnimated:(BOOL)animated {
     
     UITextView *textView = self.inputToolbar.contentView.textView;

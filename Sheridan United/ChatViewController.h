@@ -16,6 +16,7 @@
 @interface ChatViewController : JSQMessagesViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     NSMutableArray *messages;
+    NSMutableDictionary *avatarDictionary;
     JSQMessagesBubbleImage *outgoingBubbleImageData;
     JSQMessagesBubbleImage *incomingBubbleImageData;
     JSQMessagesBubbleImageFactory *bubbleFactory ;
@@ -26,4 +27,5 @@
 @property (strong, nonatomic) JSQMessagesBubbleImage *incomingBubbleImageData;
 @property (strong, nonatomic) JSQMessagesBubbleImageFactory *bubbleFactory;
 @property (retain, nonatomic) FIRDatabaseReference *ref;
+@property (retain, nonatomic) NSMutableDictionary *avatarDictionary;
 @end
