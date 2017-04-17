@@ -71,6 +71,7 @@
         [avatarDictionary setValue:userImg forKey:m];
         //[self.avatarDictionary addObject:userImg];
     }
+    //blalalal
     else{
         UIImage *img=[UIImage imageNamed:@"profilebackground.png"];
         JSQMessagesAvatarImage *u=[JSQMessagesAvatarImageFactory avatarImageWithImage:img diameter:30];
