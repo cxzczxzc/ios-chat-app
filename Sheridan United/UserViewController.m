@@ -13,7 +13,7 @@
 @end
 
 @implementation UserViewController
-
+@synthesize phoneTf,nameTf,imageView,programTf,tagLineTf,campusTf,saveBtn;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -22,6 +22,9 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)saveButtonDidTapped:(id)sender {
+    
 }
 
 /*

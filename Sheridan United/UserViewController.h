@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface UserViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UITextField *nameTf;
+@property (strong, nonatomic) IBOutlet UITextField *campusTf;
+@property (strong, nonatomic) IBOutlet UITextField *phoneTf;
+@property (strong, nonatomic) IBOutlet UITextField *programTf;
+@property (strong, nonatomic) IBOutlet UITextField *tagLineTf;
 
+@property (strong, nonatomic) IBOutlet UIButton *saveBtn;
 @end
