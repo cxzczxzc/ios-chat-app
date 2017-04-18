@@ -8,37 +8,29 @@
 
 #import "RequestViewController.h"
 #import "AppDelegate.h"
-
-@interface RequestViewController ()
-@property (strong, nonatomic) IBOutlet UIPickerView *locationPicker;
-@property (strong, nonatomic) IBOutlet UIPickerView *typePicker;
+#import <MobileCoreServices/MobileCoreServices.h>
+@import Firebase;
+@import FirebaseAuth;
+@interface RequestViewController()
 @property (weak, nonatomic) IBOutlet UISwitch *paymentSwitch;
-
-
-
 @end
 
 @implementation RequestViewController
-@synthesize typeArray,locationArray;
+@synthesize locationArray,locationPicker,typePicker, typeArray;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-   // NSMutableArray *locationArray = [NSMutableArray array];
+    locationArray= [[NSMutableArray alloc]init];
     [locationArray addObject:@"Davis"];
     [locationArray addObject:@"HMC"];
     [locationArray addObject:@"Trafalgar"];
     
-    
+    typeArray= [[NSMutableArray alloc]init];
     [typeArray addObject:@"Books"];
     [typeArray addObject:@"Food"];
     [typeArray addObject:@"Electronics"];
     [typeArray addObject:@"Miscellaneous"];
     
-    
-    _locationPicker.delegate = self;
-    _locationPicker.dataSource = self;
-    _locationPicker.showsSelectionIndicator = YES;
-    //[self.view addSubview:];
     }
 
 - (void)didReceiveMemoryWarning {
@@ -46,18 +38,19 @@
     // Dispose of any resources that can be recreated.
 }
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    NSLog(@"1");
     return 1;// or the number of vertical "columns" the picker will show...
 }
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-     NSLog(@"2");
     if(pickerView == self.locationPicker){
-               if (locationArray!=nil) {
-                  return [locationArray count];
-               }
+        NSLog(@"location");
+        if (locationArray!=nil) {
+            return [locationArray count];
+        }
     }
-    else if(pickerView == self.typePicker)
+    if(pickerView == self.typePicker)
     {
+        NSLog(@"type");
+        
         if (typeArray!=nil) {
             return [typeArray count];
         }
@@ -67,22 +60,22 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-     NSLog(@"3");
+
     //you can also write code here to descide what data to return depending on the component ("column")
-   if(pickerView == self.locationPicker){
+    if(pickerView == self.locationPicker){
         if (locationArray!=nil) {
             return [locationArray objectAtIndex:row];//assuming the array contains strings..
         }
-
     }
-    else if(pickerView == self.typePicker){
+    if(pickerView == self.typePicker){
         if (typeArray!=nil) {
             return [typeArray objectAtIndex:row];//assuming the array contains strings..
         }
-
     }
     return @"";}
 
+- (IBAction)requestButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"RequestToMain" sender:self];}
 /*
 #pragma mark - Navigation
 

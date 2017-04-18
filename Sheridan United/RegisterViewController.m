@@ -58,8 +58,13 @@
      {
          if (error)
          {
-             NSLog(@"%@", error.localizedDescription);
-             return;
+             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Registration Error" message:@"Unable to register user! Please try again." preferredStyle:UIAlertControllerStyleAlert];
+             
+             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+             
+             [alert addAction:ok];
+             
+             [self presentViewController:alert animated:YES completion:nil];
          }
          else
          {

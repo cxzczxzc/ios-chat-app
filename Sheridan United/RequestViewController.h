@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface RequestViewController : UIViewController
+@import Firebase;
+@interface RequestViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 {
-    NSMutableArray *locationArray;
+   NSMutableArray *locationArray;
     NSMutableArray *typeArray;
+    IBOutlet UIPickerView *locationPicker;
+    IBOutlet UIPickerView *typePicker;
     
 }
 @property NSMutableArray *locationArray;
 @property NSMutableArray *typeArray;
+@property IBOutlet UIPickerView *locationPicker;
+@property IBOutlet UIPickerView *typePicker;
 
 @end

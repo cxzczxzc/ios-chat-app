@@ -73,14 +73,26 @@
                                      [self openChat];
                                  }
                                  else{
-                                     errorLabel.text =@"Invalid username/password!";
+                                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sign in Error" message:@"User does not exist or bad login credentials!" preferredStyle:UIAlertControllerStyleAlert];
+                                     
+                                     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                                     
+                                     [alert addAction:ok];
+                                     
+                                     [self presentViewController:alert animated:YES completion:nil];
+                                     
                                  }
                              }];
-         }
+        }
         else
         {
-            errorLabel.text=@"Please fill all the information!";
-            //error handling
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Input Error" message:@"Please enter a valid email!" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+            
+            [alert addAction:ok];
+            
+            [self presentViewController:alert animated:YES completion:nil];
         }
 }
 
