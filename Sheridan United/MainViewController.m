@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 @import FirebaseAuth;
 @interface MainViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *createNewRequest;
 
 @end
 
@@ -57,6 +58,11 @@
     //Set navigation controller as root view controller
     appDelegate.window.rootViewController = vc;
 }
+
+
+
+- (IBAction)requestButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"MainToRequest" sender:self];}
 /*
 #pragma mark - Navigation
 

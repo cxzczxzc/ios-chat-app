@@ -18,12 +18,11 @@
 		AE232AE71E8E216E00375D4E /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE232AE61E8E216E00375D4E /* background.jpg */; };
 		AE232AE91E8E2E8B00375D4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE232AE81E8E2E8B00375D4E /* GoogleService-Info.plist */; };
 		AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE232AEB1E8E5AC400375D4E /* ChatViewController.m */; };
-		AE33551B1EA55E5200A029AB /* sheridan_brand.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE33551A1EA55E5200A029AB /* sheridan_brand.jpg */; };
-		AE33551F1EA55F4900A029AB /* sheridan_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE33551E1EA55F4900A029AB /* sheridan_logo.jpg */; };
-		AE3355231EA56E1D00A029AB /* ViewWeb.html in Resources */ = {isa = PBXBuildFile; fileRef = AE3355221EA56E1D00A029AB /* ViewWeb.html */; };
-		AE3355251EA59DF100A029AB /* railway.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3355241EA59DF100A029AB /* railway.gif */; };
 		AE5FF5CF1EA20EDE00CC4C1C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */; };
 		AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */; };
+		AE9668081EA66BC700C4F25E /* ViewWeb.html in Resources */ = {isa = PBXBuildFile; fileRef = AE9668071EA66BC700C4F25E /* ViewWeb.html */; };
+		AE96680A1EA66CF000C4F25E /* railway.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE9668091EA66CF000C4F25E /* railway.gif */; };
+		AE96680D1EA66DF000C4F25E /* RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE96680C1EA66DF000C4F25E /* RequestViewController.m */; };
 		AEA3DF1D1EA441A000AA1A77 /* profilebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */; };
 		AEA3DF201EA550B900AA1A77 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */; };
 /* End PBXBuildFile section */
@@ -47,13 +46,13 @@
 		AE232AE81E8E2E8B00375D4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE232AEA1E8E5AC400375D4E /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		AE232AEB1E8E5AC400375D4E /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
-		AE33551A1EA55E5200A029AB /* sheridan_brand.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sheridan_brand.jpg; path = ../sheridan_brand.jpg; sourceTree = "<group>"; };
-		AE33551E1EA55F4900A029AB /* sheridan_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sheridan_logo.jpg; path = ../sheridan_logo.jpg; sourceTree = "<group>"; };
-		AE3355221EA56E1D00A029AB /* ViewWeb.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ViewWeb.html; path = ../../../Documents/ViewWeb.html; sourceTree = "<group>"; };
-		AE3355241EA59DF100A029AB /* railway.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = railway.gif; path = "../Video-Background-GIF-master/VideoBackground.obj/VideoBackground.obj/railway.gif"; sourceTree = "<group>"; };
 		AE5FF5CD1EA20EDE00CC4C1C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2017-04-15 at 5.08.30 AM.png"; path = "Sheridan United/Screen Shot 2017-04-15 at 5.08.30 AM.png"; sourceTree = "<group>"; };
+		AE9668071EA66BC700C4F25E /* ViewWeb.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ViewWeb.html; sourceTree = "<group>"; };
+		AE9668091EA66CF000C4F25E /* railway.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = railway.gif; sourceTree = "<group>"; };
+		AE96680B1EA66DF000C4F25E /* RequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestViewController.h; sourceTree = "<group>"; };
+		AE96680C1EA66DF000C4F25E /* RequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestViewController.m; sourceTree = "<group>"; };
 		AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profilebackground.png; path = "Sheridan United/profilebackground.png"; sourceTree = "<group>"; };
 		AEA3DF1E1EA550B900AA1A77 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
@@ -111,7 +110,8 @@
 		AE232AC91E8E1A0A00375D4E /* Sheridan United */ = {
 			isa = PBXGroup;
 			children = (
-				AE3355221EA56E1D00A029AB /* ViewWeb.html */,
+				AE9668091EA66CF000C4F25E /* railway.gif */,
+				AE9668071EA66BC700C4F25E /* ViewWeb.html */,
 				AEA3DF1E1EA550B900AA1A77 /* UserViewController.h */,
 				AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */,
 				AE5FF5CD1EA20EDE00CC4C1C /* RegisterViewController.h */,
@@ -127,6 +127,8 @@
 				AE232AD31E8E1A0A00375D4E /* Main.storyboard */,
 				AE232AD61E8E1A0A00375D4E /* Assets.xcassets */,
 				AE232AE81E8E2E8B00375D4E /* GoogleService-Info.plist */,
+				AE96680B1EA66DF000C4F25E /* RequestViewController.h */,
+				AE96680C1EA66DF000C4F25E /* RequestViewController.m */,
 				AE232AD81E8E1A0A00375D4E /* LaunchScreen.storyboard */,
 				AE232ADB1E8E1A0A00375D4E /* Info.plist */,
 				AE232ACA1E8E1A0A00375D4E /* Supporting Files */,
@@ -145,9 +147,6 @@
 		AE3355191EA55E1900A029AB /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				AE3355241EA59DF100A029AB /* railway.gif */,
-				AE33551E1EA55F4900A029AB /* sheridan_logo.jpg */,
-				AE33551A1EA55E5200A029AB /* sheridan_brand.jpg */,
 				AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */,
 				AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */,
 				AE232AE61E8E216E00375D4E /* background.jpg */,
@@ -216,17 +215,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE3355251EA59DF100A029AB /* railway.gif in Resources */,
+				AE9668081EA66BC700C4F25E /* ViewWeb.html in Resources */,
 				AE232ADA1E8E1A0A00375D4E /* LaunchScreen.storyboard in Resources */,
 				AE232AE71E8E216E00375D4E /* background.jpg in Resources */,
+				AE96680A1EA66CF000C4F25E /* railway.gif in Resources */,
 				AE232AE91E8E2E8B00375D4E /* GoogleService-Info.plist in Resources */,
 				AE232AD71E8E1A0A00375D4E /* Assets.xcassets in Resources */,
 				AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */,
-				AE33551B1EA55E5200A029AB /* sheridan_brand.jpg in Resources */,
 				AE232AD51E8E1A0A00375D4E /* Main.storyboard in Resources */,
 				AEA3DF1D1EA441A000AA1A77 /* profilebackground.png in Resources */,
-				AE3355231EA56E1D00A029AB /* ViewWeb.html in Resources */,
-				AE33551F1EA55F4900A029AB /* sheridan_logo.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +284,7 @@
 			files = (
 				AEA3DF201EA550B900AA1A77 /* UserViewController.m in Sources */,
 				AE232AD21E8E1A0A00375D4E /* ViewController.m in Sources */,
+				AE96680D1EA66DF000C4F25E /* RequestViewController.m in Sources */,
 				AE5FF5CF1EA20EDE00CC4C1C /* RegisterViewController.m in Sources */,
 				AE232ACF1E8E1A0A00375D4E /* AppDelegate.m in Sources */,
 				AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */,

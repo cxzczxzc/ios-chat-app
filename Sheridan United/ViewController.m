@@ -15,11 +15,12 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webViewBG;
 @property (weak, nonatomic) IBOutlet UIButton *login;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @end
 
 @implementation ViewController
-@synthesize loginButton,errorLabel,registerButtton,passwordTextField,emailTextField,signInLabel,signInSelector;
+@synthesize errorLabel,passwordTextField,emailTextField,signInLabel,signInSelector;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
