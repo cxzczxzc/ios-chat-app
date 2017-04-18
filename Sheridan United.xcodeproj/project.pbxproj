@@ -23,6 +23,7 @@
 		AE9668081EA66BC700C4F25E /* ViewWeb.html in Resources */ = {isa = PBXBuildFile; fileRef = AE9668071EA66BC700C4F25E /* ViewWeb.html */; };
 		AE96680A1EA66CF000C4F25E /* railway.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE9668091EA66CF000C4F25E /* railway.gif */; };
 		AE96680D1EA66DF000C4F25E /* RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE96680C1EA66DF000C4F25E /* RequestViewController.m */; };
+		AE96680F1EA6B7F700C4F25E /* giphy-downsized.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE96680E1EA6B7F700C4F25E /* giphy-downsized.gif */; };
 		AEA3DF1D1EA441A000AA1A77 /* profilebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */; };
 		AEA3DF201EA550B900AA1A77 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		AE9668091EA66CF000C4F25E /* railway.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = railway.gif; sourceTree = "<group>"; };
 		AE96680B1EA66DF000C4F25E /* RequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestViewController.h; sourceTree = "<group>"; };
 		AE96680C1EA66DF000C4F25E /* RequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestViewController.m; sourceTree = "<group>"; };
+		AE96680E1EA6B7F700C4F25E /* giphy-downsized.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "giphy-downsized.gif"; sourceTree = "<group>"; };
 		AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profilebackground.png; path = "Sheridan United/profilebackground.png"; sourceTree = "<group>"; };
 		AEA3DF1E1EA550B900AA1A77 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		AE232AC91E8E1A0A00375D4E /* Sheridan United */ = {
 			isa = PBXGroup;
 			children = (
+				AE96680E1EA6B7F700C4F25E /* giphy-downsized.gif */,
 				AE9668091EA66CF000C4F25E /* railway.gif */,
 				AE9668071EA66BC700C4F25E /* ViewWeb.html */,
 				AEA3DF1E1EA550B900AA1A77 /* UserViewController.h */,
@@ -219,6 +222,7 @@
 				AE232ADA1E8E1A0A00375D4E /* LaunchScreen.storyboard in Resources */,
 				AE232AE71E8E216E00375D4E /* background.jpg in Resources */,
 				AE96680A1EA66CF000C4F25E /* railway.gif in Resources */,
+				AE96680F1EA6B7F700C4F25E /* giphy-downsized.gif in Resources */,
 				AE232AE91E8E2E8B00375D4E /* GoogleService-Info.plist in Resources */,
 				AE232AD71E8E1A0A00375D4E /* Assets.xcassets in Resources */,
 				AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */,

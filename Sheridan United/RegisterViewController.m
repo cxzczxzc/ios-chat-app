@@ -21,6 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
        // Do any additional setup after loading the view.
+    
+    
+    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"ViewWeb" ofType:@"html"];
+    NSURL *htmlURL = [[NSURL alloc] initFileURLWithPath:htmlPath];
+    NSData *htmlData = [[NSData alloc] initWithContentsOfURL:htmlURL];
+    
+    [self.webViewBG loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[htmlURL URLByDeletingLastPathComponent]];
+    
     imgView.layer.cornerRadius=imgView.frame.size.height/2;
     imgView.clipsToBounds=YES;
      UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseImageAction:)];
