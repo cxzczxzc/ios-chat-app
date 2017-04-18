@@ -22,6 +22,7 @@
 		AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */; };
 		AEA3DF1D1EA441A000AA1A77 /* profilebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */; };
 		AEA3DF201EA550B900AA1A77 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */; };
+		AEA3DF231EA6A8B000AA1A77 /* AutheticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3DF221EA6A8B000AA1A77 /* AutheticationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilebackground.png; sourceTree = "<group>"; };
 		AEA3DF1E1EA550B900AA1A77 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		AEA3DF211EA6A8B000AA1A77 /* AutheticationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutheticationManager.h; sourceTree = "<group>"; };
+		AEA3DF221EA6A8B000AA1A77 /* AutheticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutheticationManager.m; sourceTree = "<group>"; };
 		EF2E5F915F8735B83C517255 /* Pods-Sheridan United.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sheridan United.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sheridan United/Pods-Sheridan United.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +126,8 @@
 				AE232AD81E8E1A0A00375D4E /* LaunchScreen.storyboard */,
 				AE232ADB1E8E1A0A00375D4E /* Info.plist */,
 				AE232ACA1E8E1A0A00375D4E /* Supporting Files */,
+				AEA3DF211EA6A8B000AA1A77 /* AutheticationManager.h */,
+				AEA3DF221EA6A8B000AA1A77 /* AutheticationManager.m */,
 			);
 			path = "Sheridan United";
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				AE232ACF1E8E1A0A00375D4E /* AppDelegate.m in Sources */,
 				AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */,
 				AE232AE31E8E1A9D00375D4E /* MainViewController.m in Sources */,
+				AEA3DF231EA6A8B000AA1A77 /* AutheticationManager.m in Sources */,
 				AE232ACC1E8E1A0A00375D4E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
