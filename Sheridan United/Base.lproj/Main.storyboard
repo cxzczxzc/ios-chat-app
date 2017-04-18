@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Mf-W1-MUz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,28 +28,28 @@
                                 <rect key="frame" x="37" y="198" width="300" height="201"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cp1-Yf-dDO">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="200.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="201"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="WFP-HQ-eki">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="200.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="201"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="v2J-ME-uvm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="200.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="201"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kqz-Jk-cxB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="200.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="201"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="erd-dC-azP">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="200.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="201"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uv-8T-t31">
-                                                                                <rect key="frame" x="117" y="0.0" width="66.5" height="26.5"/>
+                                                                                <rect key="frame" x="117" y="0.0" width="67" height="27"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="7L4-NR-Cf6">
-                                                                                <rect key="frame" x="1" y="51.5" width="298" height="30"/>
+                                                                                <rect key="frame" x="1" y="52" width="298" height="30"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9U-yN-IxO">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="53" height="30"/>
@@ -69,7 +69,7 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ID-8S-IdM">
-                                                                                <rect key="frame" x="0.0" y="106.5" width="300" height="30"/>
+                                                                                <rect key="frame" x="0.0" y="107" width="300" height="30"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3d-Ym-efq">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="159" height="30"/>
@@ -102,7 +102,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3z-It-jhh">
-                                                                                <rect key="frame" x="122.5" y="161.5" width="55" height="39"/>
+                                                                                <rect key="frame" x="123" y="162" width="55" height="39"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                                 <state key="normal" title="Login">
                                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -405,7 +405,6 @@
         <!--Navigation Controller-->
         <scene sceneID="kMP-E1-foL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IT6-sA-pMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="NavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="yX6-cg-ecu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LeO-hC-GYK">
@@ -420,6 +419,7 @@
                         <segue destination="We0-qA-fc9" kind="presentation" id="Id9-bN-z1g"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IT6-sA-pMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="895" y="38"/>
         </scene>

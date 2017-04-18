@@ -14,6 +14,7 @@
 
 @implementation UserViewController
 @synthesize phoneTf,nameTf,imageView,programTf,tagLineTf,campusTf,saveBtn;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     imageView.layer.cornerRadius=imageView.frame.size.height/2;
@@ -34,14 +35,12 @@
 }
 -(void)updateUserData
 {
-//    NSString *key = [[_ref child:@"posts"] childByAutoId].key;
-//    NSDictionary *post = @{@"displayName": userID,
-//                           @"author": username,
-//                           @"title": title,
-//                           @"body": body};
-//    NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
-//                                   [NSString stringWithFormat:@"/user-posts/%@/%@/", userID, key]: post};
-//    [_ref updateChildValues:childUpdates];
+    NSString *name = nameTf.text;
+    NSString *campus =campusTf.text;
+    NSString *phone =phoneTf.text;
+    NSString *program = programTf.text;
+    NSString *tagline = tagLineTf.text;
+    //[FIRAuth auth]
 }
 #pragma mark image methods
 - (IBAction)chooseImageAction:(id)sender

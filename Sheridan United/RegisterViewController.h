@@ -18,6 +18,7 @@
     UIImagePickerController *imagePicker;
     NSString *profileImageURL;
     UIImage *profileImage;
+    FIRDatabaseReference *ref;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *imgView;
 @property (strong, nonatomic) IBOutlet UILabel *label;
