@@ -13,6 +13,8 @@
 @import FirebaseAuth;
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *webViewBG;
+@property (weak, nonatomic) IBOutlet UIButton *login;
 
 @end
 
@@ -20,8 +22,24 @@
 @synthesize loginButton,errorLabel,registerButtton,passwordTextField,emailTextField,signInLabel,signInSelector;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"ViewWeb" ofType:@"html"];
+    NSURL *htmlURL = [[NSURL alloc] initFileURLWithPath:htmlPath];
+    NSData *htmlData = [[NSData alloc] initWithContentsOfURL:htmlURL];
+    
+    [self.webViewBG loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[htmlURL URLByDeletingLastPathComponent]];
+    
+    self.login.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.login.layer.borderWidth = 2.0;
+    
+    //self.signUpButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    //self.signUpButton.layer.borderWidth = 2.0f;
+
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
@@ -54,14 +72,13 @@
                                      [self openChat];
                                  }
                                  else{
-                                     errorLabel.text =@"Unable to sign in!";
+                                     errorLabel.text =@"Invalid username/password!";
                                  }
                              }];
          }
         else
         {
-            errorLabel.text=@"Please check your input!";
-
+            errorLabel.text=@"Please fill all the information!";
             //error handling
         }
 }

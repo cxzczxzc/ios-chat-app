@@ -12,6 +12,7 @@
 @import Firebase;
 @import FirebaseAuth;
 @interface RegisterViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *webViewBG;
 
 @end
 
@@ -26,6 +27,8 @@
     tap.numberOfTapsRequired=1;
     imgView.userInteractionEnabled = YES;
     [self.imgView addGestureRecognizer:tap];
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
