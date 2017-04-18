@@ -7,8 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface UserViewController : UIViewController
+@import Firebase;
+@interface UserViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+{
+         FIRDatabaseReference *ref;
+         UIImageView *imageView;
+         UITextField *nameTf;
+         UITextField *campusTf;
+         UITextField *phoneTf;
+         UITextField *programTf;
+         UITextField *tagLineTf;
+         UIImagePickerController *imagePicker;
+         NSString *profileImageURL;
+         UIImage *profileImage;
+   
+}
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UITextField *nameTf;
 @property (strong, nonatomic) IBOutlet UITextField *campusTf;
