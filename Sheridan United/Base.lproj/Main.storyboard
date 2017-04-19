@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="W5k-ol-MUc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="E48FFB62-0950-4079-AE04-BD8090AA1BCE" translatesAutoresizingMaskIntoConstraints="NO" id="zRt-YI-nLZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="59FDAEDF-78FC-420B-91C9-21E123C79495" translatesAutoresizingMaskIntoConstraints="NO" id="zRt-YI-nLZ">
                                 <rect key="frame" x="-6" y="36" width="381" height="631"/>
                             </imageView>
                             <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-6R-OUC">
@@ -698,7 +698,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="E48FFB62-0950-4079-AE04-BD8090AA1BCE" width="133" height="224">
+        <image name="59FDAEDF-78FC-420B-91C9-21E123C79495" width="133" height="224">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -2262,7 +2262,7 @@ twAAAAAAAAQBAAAAAAAAAD4AAAAAAAAAAAAAAAAAAWu5A
         <image name="profilebackground.png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g6y-14-0t1"/>
-        <segue reference="vqk-10-aEL"/>
+        <segue reference="NhC-g7-zG0"/>
+        <segue reference="wlZ-oy-0zF"/>
     </inferredMetricsTieBreakers>
 </document>
