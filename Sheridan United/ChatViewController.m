@@ -245,9 +245,7 @@
 {
     [super collectionView];
     NSLog(@"Msg count: %lu",messages.count);
-    
     return messages.count;
-    
 }
 -(id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -297,7 +295,7 @@
 -(void)sendImageToDatabase:(UIImage*)pic
 {
     FIRStorageReference *storage = [[FIRStorage storage]referenceForURL:@"gs://sheridan-united.appspot.com/"];
-     NSTimeInterval interval = [[[NSDate alloc]init ]timeIntervalSinceReferenceDate];
+    NSTimeInterval interval = [[[NSDate alloc]init ]timeIntervalSinceReferenceDate];
     NSString *username=(NSString *)[[FIRAuth auth] currentUser];
     NSString *filepath= [NSString stringWithFormat: @"%@/%f", username,interval];
     FIRStorageReference *child=[storage child: filepath];
