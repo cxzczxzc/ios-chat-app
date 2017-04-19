@@ -82,7 +82,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     [self.tableView performSelectorOnMainThread:@selector(reloadData)
                                      withObject:nil
@@ -90,6 +90,11 @@
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[userList[indexPath.row] profileUrl]]
                    placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     cell.textLabel.text=[userList[indexPath.row] displayName];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+    NSString *str=[[userList[indexPath.row]request1title] stringByAppendingString:[userList[indexPath.row]request1location]];
+    cell.detailTextLabel.text=str;
+    cell.detailTextLabel.font = [UIFont italicSystemFontOfSize:15];
+    
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

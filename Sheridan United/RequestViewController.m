@@ -53,14 +53,14 @@
     
     row = [locationPicker selectedRowInComponent:0];
     location = [locationArray objectAtIndex:row];
-    
+    NSString *str=[@" at: " stringByAppendingString:location];
     row = [typePicker selectedRowInComponent:0];
     type = [typeArray objectAtIndex:row];
 
     self.ref = [[FIRDatabase database] referenceFromURL:@"https://sheridan-united.firebaseio.com"];
     
     [[[ref child:@"users"] child:user.uid]
-updateChildValues:@{@"request1title":title , @"request1description":description, @"request1location":location, @"request1payment":payment, @"request1type":type}];
+updateChildValues:@{@"request1title":title , @"request1description":description, @"request1location":str, @"request1payment":payment, @"request1type":type}];
     
 }
 

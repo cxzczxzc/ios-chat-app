@@ -30,6 +30,11 @@
 		AEC3A13F1EA74874000624F6 /* ViewWeb.html in Resources */ = {isa = PBXBuildFile; fileRef = AEC3A13A1EA74874000624F6 /* ViewWeb.html */; };
 		AEC3A1401EA74874000624F6 /* WhatsApp Image 2017-04-18 at 11.01.25 PM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = AEC3A13B1EA74874000624F6 /* WhatsApp Image 2017-04-18 at 11.01.25 PM.jpeg */; };
 		AEC3A1421EA756C7000624F6 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = AEC3A1411EA756C7000624F6 /* back.png */; };
+		AEC3A1441EA76BD1000624F6 /* backbtn.svg in Resources */ = {isa = PBXBuildFile; fileRef = AEC3A1431EA76BD1000624F6 /* backbtn.svg */; };
+		AEC3A1461EA77399000624F6 /* grey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEC3A1451EA77399000624F6 /* grey.jpg */; };
+		AEC3A1481EA77585000624F6 /* black.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEC3A1471EA77585000624F6 /* black.jpg */; };
+		AEC3A14A1EA7780A000624F6 /* bluebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = AEC3A1491EA7780A000624F6 /* bluebutton.png */; };
+		AEC3A14C1EA77852000624F6 /* button.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEC3A14B1EA77852000624F6 /* button.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +73,11 @@
 		AEC3A13A1EA74874000624F6 /* ViewWeb.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ViewWeb.html; sourceTree = "<group>"; };
 		AEC3A13B1EA74874000624F6 /* WhatsApp Image 2017-04-18 at 11.01.25 PM.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WhatsApp Image 2017-04-18 at 11.01.25 PM.jpeg"; sourceTree = "<group>"; };
 		AEC3A1411EA756C7000624F6 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		AEC3A1431EA76BD1000624F6 /* backbtn.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = backbtn.svg; sourceTree = "<group>"; };
+		AEC3A1451EA77399000624F6 /* grey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grey.jpg; sourceTree = "<group>"; };
+		AEC3A1471EA77585000624F6 /* black.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = black.jpg; sourceTree = "<group>"; };
+		AEC3A1491EA7780A000624F6 /* bluebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluebutton.png; sourceTree = "<group>"; };
+		AEC3A14B1EA77852000624F6 /* button.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = button.jpg; sourceTree = "<group>"; };
 		EF2E5F915F8735B83C517255 /* Pods-Sheridan United.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sheridan United.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sheridan United/Pods-Sheridan United.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,19 +132,24 @@
 			isa = PBXGroup;
 			children = (
 				AEC3A1361EA74874000624F6 /* background.png */,
+				AEC3A1491EA7780A000624F6 /* bluebutton.png */,
 				AEC3A1371EA74874000624F6 /* giphy-downsized.gif */,
+				AEC3A14B1EA77852000624F6 /* button.jpg */,
+				AEC3A1431EA76BD1000624F6 /* backbtn.svg */,
 				AEC3A1411EA756C7000624F6 /* back.png */,
 				AEC3A1381EA74874000624F6 /* RequestViewController.h */,
 				AEC3A1391EA74874000624F6 /* RequestViewController.m */,
 				AEC3A13A1EA74874000624F6 /* ViewWeb.html */,
 				AEC3A13B1EA74874000624F6 /* WhatsApp Image 2017-04-18 at 11.01.25 PM.jpeg */,
 				AE704DF21EA6FBB700FCA0C0 /* User.h */,
+				AEC3A1471EA77585000624F6 /* black.jpg */,
 				AE704DF31EA6FBB700FCA0C0 /* User.m */,
 				AEA3DF1E1EA550B900AA1A77 /* UserViewController.h */,
 				AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */,
 				AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */,
 				AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */,
 				AE5FF5CD1EA20EDE00CC4C1C /* RegisterViewController.h */,
+				AEC3A1451EA77399000624F6 /* grey.jpg */,
 				AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */,
 				AE232AEB1E8E5AC400375D4E /* ChatViewController.m */,
 				AE232AEA1E8E5AC400375D4E /* ChatViewController.h */,
@@ -228,16 +243,21 @@
 			files = (
 				AE232ADA1E8E1A0A00375D4E /* LaunchScreen.storyboard in Resources */,
 				AEC3A13C1EA74874000624F6 /* background.png in Resources */,
+				AEC3A1461EA77399000624F6 /* grey.jpg in Resources */,
+				AEC3A1441EA76BD1000624F6 /* backbtn.svg in Resources */,
 				AE232AE71E8E216E00375D4E /* background.jpg in Resources */,
+				AEC3A14A1EA7780A000624F6 /* bluebutton.png in Resources */,
 				AE232AE91E8E2E8B00375D4E /* GoogleService-Info.plist in Resources */,
 				AE232AD71E8E1A0A00375D4E /* Assets.xcassets in Resources */,
 				AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */,
+				AEC3A14C1EA77852000624F6 /* button.jpg in Resources */,
 				AEC3A13F1EA74874000624F6 /* ViewWeb.html in Resources */,
 				AEC3A1401EA74874000624F6 /* WhatsApp Image 2017-04-18 at 11.01.25 PM.jpeg in Resources */,
 				AEC3A1421EA756C7000624F6 /* back.png in Resources */,
 				AE232AD51E8E1A0A00375D4E /* Main.storyboard in Resources */,
 				AEC3A13D1EA74874000624F6 /* giphy-downsized.gif in Resources */,
 				AEA3DF1D1EA441A000AA1A77 /* profilebackground.png in Resources */,
+				AEC3A1481EA77585000624F6 /* black.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

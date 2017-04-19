@@ -20,6 +20,15 @@
 @synthesize emailTf,passwordTf,nameTf,profileImage,imgView,registerButton,profileImageURL,imagePicker,label,ref;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"Email" attributes:@{ NSForegroundColorAttributeName : [UIColor lightGrayColor] }];
+    self.emailTf.attributedPlaceholder = str;
+    str = [[NSAttributedString alloc] initWithString:@"Name" attributes:@{ NSForegroundColorAttributeName : [UIColor lightGrayColor] }];
+    self.nameTf.attributedPlaceholder=str;
+    str = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{ NSForegroundColorAttributeName : [UIColor lightGrayColor] }];
+    self.passwordTf.attributedPlaceholder=str;
+    self.registerButton.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.registerButton.layer.borderWidth = 2.0;
+    
     // Do any additional setup after loading the view.
     
     
@@ -79,6 +88,14 @@
          }
          else
          {
+             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Registration Successful" message:@"Please login with your credentials!" preferredStyle:UIAlertControllerStyleAlert];
+             
+             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+             
+             [alert addAction:ok];
+             
+             [self presentViewController:alert animated:YES completion:nil];
+
             // [self openChat];
              [self saveProfileImage];
          }

@@ -29,8 +29,12 @@
     NSData *htmlData = [[NSData alloc] initWithContentsOfURL:htmlURL];
     
     [self.webViewBG loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[htmlURL URLByDeletingLastPathComponent]];
-    
-    self.login.layer.borderColor = [[UIColor whiteColor] CGColor];
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{ NSForegroundColorAttributeName : [UIColor lightGrayColor] }];
+    self.passwordTextField.attributedPlaceholder = str;
+    str = [[NSAttributedString alloc] initWithString:@"Email" attributes:@{ NSForegroundColorAttributeName : [UIColor lightGrayColor] }];
+    self.emailTextField.attributedPlaceholder=str;
+
+    self.login.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.login.layer.borderWidth = 2.0;
 }
 
