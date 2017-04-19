@@ -35,7 +35,7 @@
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor: [UIColor greenColor]];
     FIRUser *currentUser= [[FIRAuth auth]currentUser];
     self.senderId=currentUser.uid;
-    //self.senderDisplayName = @"Mowgli";
+    self.senderDisplayName = @"Mowgli";
     self.messages = [NSMutableArray new];
     NSLog(@"user id %@", currentUser.photoURL);
     //connection to Firebase DB created, ref is the root which will provide DB access

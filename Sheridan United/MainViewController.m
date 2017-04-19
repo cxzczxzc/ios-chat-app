@@ -17,16 +17,17 @@
 @end
 
 @implementation MainViewController
-@synthesize chatBtn,tableView,ref,userList,userData,array;
+@synthesize chatBtn,tableView,ref,userList,userData,array,numRows;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.userData= [[NSMutableDictionary alloc]init];
+    self.array = [NSArray new];
+    self.userData= [[NSDictionary alloc]init];
     self.userList=[NSMutableArray new];
     self.ref=[[FIRDatabase database] reference ];
     [self getUsers];
-    self.array = [NSMutableArray arrayWithCapacity:1];
-    [array addObject:@"Eezy"];
-    [array addObject:@"Tutorials"];
+    NSLog(@"rowssss %l",numRows);
+   // [array addo];
+    //[array addObject:@"Tutorials"];
     // Do any additional setup after loading the view.
 }
 - (IBAction)logOutDidTapped:(id)sender {
@@ -44,11 +45,8 @@
     [self presentViewController:vc animated:YES completion:NULL];
     //Get the app delegate
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
     //Set navigation controller as root view controller
     appDelegate.window.rootViewController = vc;
-    
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,35 +61,37 @@
     [self presentViewController:vc animated:YES completion:NULL];
     //Get the app delegate
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
     //Set navigation controller as root view controller
     appDelegate.window.rootViewController = vc;
 }
 #pragma mark db methods
 -(void)getUsers/*:(NSMutableArray*)users*/
 {
-//    
-//    [[self.ref child:@"users"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot)
-//    {
-//        NSLog(@"users are %@",snapshot);
-//        NSDictionary *dict = snapshot.value;
-//        NSString *name= [dict objectForKey:@"displayName"];
-//        //[userList addObject:name];
-//        NSLog(@"the names are %@", name);
-//    }
-//     ];
-//     // return userList;
     [[self.ref child:@"users"]  observeEventType:FIRDataEventTypeValue withBlock:
      ^(FIRDataSnapshot *snapshot)
      {
-         self.userData = snapshot.value;
-         NSString *avatarURL=[userData objectForKey:@"profileUrl"];
+         NSDictionary *dict = snapshot.value;
+         NSString *avatarURL=[dict objectForKey:@"profileUrl"];
          //self.senderDisplayName=[dict objectForKey:@"displayName"];
-        NSLog(@"Dictionary contents: %@",self.userData);
-         NSLog(@"Number of users : %lu",self.userData.count); //[self setupAvatar:avatarURL messageId:id];
+         NSLog(@"dictionary contents %@",avatarURL);
+
          
      }];
-
+    /*[[self.ref child:@"users"]  observeEventType:FIRDataEventTypeValue withBlock:
+     ^(FIRDataSnapshot *snapshot)
+     {
+         self.userData = snapshot.value;
+         NSLog(@"keykeykey %lu",[[userData allKeys] count]);
+         self.numRows=[[userData allKeys] count];
+         NSString *avatarURL=[userData objectForKey:@"profileUrl"];
+         //self.senderDisplayName=[dict objectForKey:@"displayName"];
+         NSLog(@"Dictionary contents: %@", [self.userData allKeys][0]);
+       //  self.userList = [userData allKeys];
+         //NSLog(@"rararaarar %@");
+         NSLog(@"Number of users : %lu",self.userData.count); //[self setupAvatar:avatarURL messageId:id];
+     }];*/
+     NSLog(@"dictonnnnnary %@",self.userData);
+    NSLog(@"numrowssss %ld",self.numRows);
 }
 #pragma mark tableview operations
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -100,17 +100,18 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.array.count;
+    return numRows;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSArray *keys =[[userData allKeys]sortedArrayUsingSelector:@selector(compare:)];
-//    NSString *key = keys[indexPath.row];
-//    NSLog(@"key %@", key);
+    
     NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     //cell.textLabel.text = @"afbweifviw";
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [array objectAtIndex:indexPath.row]];
+    //NSArray *keys = [[userData allKeys]sortedArrayUsingSelector:@selector(compare:)];
+    NSString *key = self.array[indexPath.row];
+    cell.textLabel.text = key;
+    //cell.textLabel.text = [NSString stringWithFormat:@"%@", [array objectAtIndex:indexPath.row]];
     //cell.detailTextLabel.text = userData[key];
     return cell;
    

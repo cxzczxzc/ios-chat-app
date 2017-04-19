@@ -14,12 +14,13 @@
     IBOutlet UITableView *tableView;
      FIRDatabaseReference *ref;
     NSMutableArray *userList;
-    NSMutableDictionary *userData;
+    NSDictionary *userData;
 }
 @property (strong, nonatomic) IBOutlet UIButton *chatBtn;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet FIRDatabaseReference *ref;
 @property (strong, nonatomic) IBOutlet NSMutableArray *userList;
-@property (strong, nonatomic) IBOutlet NSMutableDictionary *userData;
-@property (strong, nonatomic) IBOutlet NSMutableArray *array;
+@property (strong, nonatomic) IBOutlet NSDictionary *userData;
+@property (strong, nonatomic) IBOutlet NSArray *array;
+@property (nonatomic)  NSInteger numRows;
 @end
