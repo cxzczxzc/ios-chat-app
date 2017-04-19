@@ -2,10 +2,11 @@
 //  UserViewController.m
 //  Sheridan United
 //
-//  Created by Xcode User on 2017-04-17.
+//  Created by Ankit Shah on 2017-04-17.
 //  Copyright © 2017 Sheridan College. All rights reserved.
 //
-
+//this class is used to add additional user data
+// it builds user profile
 #import "UserViewController.h"
 @import Firebase;
 @interface UserViewController ()
@@ -14,6 +15,7 @@
 
 @implementation UserViewController
 @synthesize phoneTf,nameTf,imageView,programTf,tagLineTf,campusTf,saveBtn,ref;
+//a UIImageView is instantiated which can be chosen by the user to update his profile picture
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,6 +32,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+//gets an instance of the current user and adds data for that user's sender ID
 - (IBAction)saveButtonDidTapped:(id)sender {
     
     FIRUser *currentUser = [FIRAuth auth].currentUser;
@@ -47,7 +50,7 @@
     // NSDictionary *userInformation = @{@"email" : name};
     //[FIRAuth auth]
     self.ref = [[FIRDatabase database] referenceFromURL:@"https://sheridan-united.firebaseio.com"];
-    
+    //looks for the child 'users' in the firebase database
     [[[ref child:@"users"] child:user.uid]
      updateChildValues:@{@"senderId": user.uid,@"displayName": name, @"campus": campus, @"phone": phone, @"program": program, @"tagline": tagline}];
     

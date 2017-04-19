@@ -2,7 +2,7 @@
 //  RequestViewController.m
 //  Sheridan United
 //
-//  Created by Xcode User on 2017-04-18.
+//  Created by Puneet Kaur on 2017-04-18.
 //  Copyright © 2017 Sheridan College. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 
 @implementation RequestViewController
 @synthesize locationArray,locationPicker,typePicker, typeArray,titleTf,descTv, saveButton,ref, paymentSw;
-
+//the arrays are initialized which will be used to populate picker views in viewDidLoad method
 - (void)viewDidLoad {
     [super viewDidLoad];
     locationArray= [[NSMutableArray alloc]init];
@@ -31,13 +31,15 @@
     [typeArray addObject:@"Miscellaneous"];
     
     }
+//an instance of current user is created
+//values are stored in database for the current user (every user has a unique id, we can query firebase using the unique ids)
 - (IBAction)saveButtonDidTapped:(id)sender {
     NSLog(@"1");
     FIRUser *currentUser = [FIRAuth auth].currentUser;
     [self saveValuesForUser: currentUser];
     NSLog(@"2");
 }
-
+//the user enters his details which are retrieved from the textfields
 -(void) saveValuesForUser:(FIRUser *) user
 {
     NSString *title = titleTf.text;
@@ -56,9 +58,9 @@
     NSString *str=[@" at: " stringByAppendingString:location];
     row = [typePicker selectedRowInComponent:0];
     type = [typeArray objectAtIndex:row];
-
+    //reference to the firebase database where these values are stored
     self.ref = [[FIRDatabase database] referenceFromURL:@"https://sheridan-united.firebaseio.com"];
-    
+    //we look for the child 'users' - equivalent of a table in RDBMS systems and append with keys the values entered by the user in the UI
     [[[ref child:@"users"] child:user.uid]
 updateChildValues:@{@"request1title":title , @"request1description":description, @"request1location":str, @"request1payment":payment, @"request1type":type}];
     
@@ -68,6 +70,7 @@ updateChildValues:@{@"request1title":title , @"request1description":description,
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark PickerView methods
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;// or the number of vertical "columns" the picker will show...
 }

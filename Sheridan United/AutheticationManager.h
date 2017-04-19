@@ -2,7 +2,7 @@
 //  AutheticationManager.h
 //  Sheridan United
 //
-//  Created by Xcode User on 2017-04-18.
+//  Created by Surbhi Handa on 2017-04-18.
 //  Copyright © 2017 Sheridan College. All rights reserved.
 //
 

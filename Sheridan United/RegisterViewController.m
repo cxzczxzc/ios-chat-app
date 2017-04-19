@@ -2,7 +2,7 @@
 //  RegisterViewController.m
 //  Sheridan United
 //
-//  Created by Xcode User on 2017-04-15.
+//  Created by Surbhi Handa on 2017-04-15.
 //  Copyright © 2017 Sheridan College. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 
 @implementation RegisterViewController
 @synthesize emailTf,passwordTf,nameTf,profileImage,imgView,registerButton,profileImageURL,imagePicker,label,ref;
+//the view is loaded along with UI items formatting
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"Email" attributes:@{ NSForegroundColorAttributeName : [UIColor lightGrayColor] }];
@@ -31,11 +32,11 @@
     
     // Do any additional setup after loading the view.
     
-    
+    //HTML file is used to display the video that plays in the background
     NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"ViewWeb" ofType:@"html"];
     NSURL *htmlURL = [[NSURL alloc] initFileURLWithPath:htmlPath];
     NSData *htmlData = [[NSData alloc] initWithContentsOfURL:htmlURL];
-    
+    //webViewBG is used to display the html content in the background
     [self.webViewBG loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[htmlURL URLByDeletingLastPathComponent]];
     
     imgView.layer.cornerRadius=imgView.frame.size.height/2;
@@ -55,17 +56,21 @@
 - (IBAction)registerButtonDidTap:(id)sender {
     [self registerNewUser];
 }
+//this method is used to save the values for user
 -(void) saveValuesForUser:(FIRUser *) user
 {
     self.ref = [[FIRDatabase database] referenceFromURL:@"https://sheridan-united.firebaseio.com"];
     NSString *name = nameTf.text;
     // NSString *campus = "";
-    
+    //initally the profile options are added as empty strings
+    //later on once the user is logged in, the userviewcontroller class
+    // can be used to append to these fields
     [[[ref child:@"users"] child:user.uid]
      setValue:@{@"senderId": user.uid,@"displayName": name, @"campus": @"", @"phone": @"", @"program": @"", @"tagline": @"", @"request1title": @"", @"request1description": @"", @"request1location": @"", @"request1payment": @"", @"request1type": @"",@"profileUrl": profileImageURL}];
 }
+//calls the creatrUserWithEmail method of Firebase
+// other options like google login, facebook login and even anonymous login can be implemented using almost similar methods
 - (void) registerNewUser
-
 {
     NSString *email = emailTf.text;
     NSString *password = passwordTf.text;
@@ -77,6 +82,7 @@
      {
          if (error)
          {
+             //display an alert box in case of wrong input
              NSLog(@"error %@", error.description);
              UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Registration Error" message:@"Unable to register user! Please try again." preferredStyle:UIAlertControllerStyleAlert];
              
@@ -87,7 +93,7 @@
              [self presentViewController:alert animated:YES completion:nil];
          }
          else
-         {
+         {//display an alert box prompting the user to sign in through the login page
              UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Registration Successful" message:@"Please login with your credentials!" preferredStyle:UIAlertControllerStyleAlert];
              
              UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
@@ -135,29 +141,10 @@
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
-//- (void) selectPhoto:(UITapGestureRecognizer *)recognizer
-//{
-//    NSLog(@"select photo clicked");
-//    imagePicker =[[UIImagePickerController alloc] init];
-//    imagePicker.allowsEditing=YES;
-//    imagePicker.delegate=self;
-//    [self presentViewController:imagePicker animated:YES completion:nil];
-//}
-//
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-//    if([info[UIImagePickerControllerMediaType] isEqualToString:(__bridge NSString *)(kUTTypeImage)])
-//    {
-//        //if media type is image
-//        UIImage *chosenImage = (UIImage *)info[UIImagePickerControllerOriginalImage];
-//        [imgView setImage:chosenImage];
-//        //[self sendImageToDatabase:chosenImage];
-//        //image
-//    }
-//    [picker dismissViewControllerAnimated:YES completion:NULL];
-//}
-
+//gets a reference to firebase storage
+//Firebase storage is used to store media
+//the method below is used to store the user's profile picture
 - (void) saveProfileImage
-
 {
     FIRUser *currentUser = [FIRAuth auth].currentUser;
     //NSString *username = nameTf.text;
@@ -186,33 +173,7 @@
          }];
     }
 }
-
-//-(void)sendImageToDatabase:(UIImage*)pic
-//{
-//    FIRStorageReference *storage = [[FIRStorage storage]referenceForURL:@"gs://sheridan-united.appspot.com/"];
-//    NSTimeInterval interval = [[[NSDate alloc]init ]timeIntervalSinceReferenceDate];
-//    NSString *username=(NSString *)[[FIRAuth auth] currentUser];
-//    NSString *filepath= [NSString stringWithFormat: @"%@/%f", username,interval];
-//    FIRStorageReference *child=[storage child: filepath];
-//    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc]init] ;
-//    metadata.contentType=@"image/jpg";
-//    NSData *imageData = UIImageJPEGRepresentation(pic, 0.8);
-//    [child putData:imageData metadata:metadata completion:^(FIRStorageMetadata *metadata, NSError *error)
-//     {
-//         if (!error)
-//         {
-//             NSLog(@"Image uploaded ");
-//         }
-//         else if (error)
-//         {
-//             NSLog(@"Failed to save image message %@",error.description);
-//         }
-//     }];
-//
-//#pragma mark ui methods
-//}
-
-
+//this method can be called in case of successful 
 -(void)openChat
 {
     [self performSegueWithIdentifier:@"LoginToMain" sender:self];

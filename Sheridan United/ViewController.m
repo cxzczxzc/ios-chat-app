@@ -2,7 +2,7 @@
 //  ViewController.m
 //  Sheridan United
 //
-//  Created by Xcode User on 2017-03-31.
+//  Created by Puneet Kaur on 2017-03-31.
 //  Copyright © 2017 Sheridan College. All rights reserved.
 //
 
@@ -21,6 +21,9 @@
 
 @implementation ViewController
 @synthesize errorLabel,passwordTextField,emailTextField,signInLabel,signInSelector;
+//starting the view by instantiating it with the webview to display
+//the background video
+//also adjusting the layout
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -48,7 +51,7 @@
     // Dispose of any resources that can be recreated.
     
 }
-
+//this is where user authentication is verified by firebase auth
 - (IBAction)loginDidTapped:(id)sender {
     //validate email and password inputs
     if (emailTextField.text.length > 0 && passwordTextField.text.length>0)
@@ -58,7 +61,9 @@
         [[FIRAuth auth] signInWithEmail:emailTextField.text
                                password:passwordTextField.text
                              completion:^(FIRUser *user, NSError *error) {
+                                 //if the user exists
                                  if (user) {
+                                     
                                      [self openChat];
                                  }
                                  else{
@@ -75,6 +80,7 @@
     }
     else
     {
+        //alert view displays error message in case of bad input
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Input Error" message:@"Please enter a valid email!" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];

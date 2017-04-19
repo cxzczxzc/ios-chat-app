@@ -2,10 +2,12 @@
 //  ChatViewController.m
 //  Sheridan United
 //
-//  Created by Xcode User on 2017-03-31.
+//  Created by Saad Ahmad on 2017-03-31.
 //  Copyright © 2017 Sheridan College. All rights reserved.
 //
-
+//this class is used to display the chat interface
+// it can be used to send text, photo and video messages
+//it is updated in real time with Firebase, nothing is stored locally
 #import "ChatViewController.h"
 #import "JSQMessagesViewController/JSQMessagesViewController.h"
 #import "JSQMessageData.h"
@@ -27,6 +29,7 @@
 
 @implementation ChatViewController
 @synthesize messages,avatarDictionary,outgoingBubbleImageData,incomingBubbleImageData,bubbleFactory,ref;
+//instantiating incoming and outgoing chat bubbles, current user and the array that will store messages
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.avatarDictionary=[NSMutableDictionary dictionary];
@@ -51,27 +54,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- //*/
+// this method is used to set up the avatar for the user in the chat view
+// it is the small round picture right beside the chat bubble
 -(void)setupAvatar:(NSString *)url messageId: (NSString*) m
 {
     if(url)
     {
+        //getting image from a url
+        //the url contains the current users profile picture
+        // it is then converted to NSData object which can be used
+        //to instantiate the image
+        //JSQ methods are called to get it to display
         NSURL *fileUrl= [NSURL URLWithString:url];
         NSData *data =[NSData dataWithContentsOfURL:fileUrl];
         UIImage *image=[UIImage imageWithData:data];
         JSQMessagesAvatarImage *userImg=[JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30];
         [avatarDictionary setValue:userImg forKey:m];
-        //[self.avatarDictionary addObject:userImg];
     }
-    //blalalal
+    //in case the current user does not have a profile picture,  generic profile picture is attached to the profile
     else{
         UIImage *img=[UIImage imageNamed:@"profilebackground.png"];
         JSQMessagesAvatarImage *u=[JSQMessagesAvatarImageFactory avatarImageWithImage:img diameter:30];
@@ -83,6 +83,9 @@
 // ---------------------------------IMPORTANT METHOD---------------------------------//
 -(void)observeUsers:(NSString*) id
 {
+    //looks for the child 'users', id represents the messageId
+    //each message that goes through firebase has a sender ID and
+    //this code finds the data based on that
     
     [[[self.ref child:@"users"] child: id] observeEventType:FIRDataEventTypeValue withBlock:
      ^(FIRDataSnapshot *snapshot)
@@ -96,8 +99,11 @@
      }];
 }
 // ---------------------------------IMPORTANT METHOD---------------------------------//
+//used to get messages from firebase
 -(void)observeMessages
 {
+    //looks for 'messages child' which has all the messages stored in it
+    //the snapshot retrieved from the method below returns a dictionary of all the messages and related data
     [[self.ref child:@"messages" ] observeEventType:FIRDataEventTypeChildAdded withBlock:
      ^(FIRDataSnapshot *snapshot)
      {
@@ -109,6 +115,7 @@
          NSURL *fileUrl =[dict objectForKey:@"fileUrl"];
          JSQMessage *js ;
          [self observeUsers : senderId];
+         //checking the type of message in the code below
          if([media isEqualToString:@"TEXT"] )
          {
              js=[[JSQMessage alloc] initWithSenderId:senderId
@@ -154,7 +161,8 @@
          
      }];
 }
-
+//when the user presses send, this method gets fired
+//it pushed the message to firebase as well as local repo
 -(void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)senderDisplayName date:(NSDate *)date
 {
     FIRDatabaseReference *newMessage=  [[self.ref child:@"messages"] childByAutoId];
@@ -165,7 +173,7 @@
     [messageData setValue:@"TEXT" forKey:@"mediaType"];
     [newMessage setValue:messageData];
 }
-
+//accessory button provides the interface for sending media
 -(void)didPressAccessoryButton:(UIButton *)sender
 {
     printf("Accessory button pressed");
@@ -261,7 +269,7 @@
     JSQMessagesCollectionViewCell  *cell= (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath] ;
     return cell;
 }
-
+//looking at the message to see if its incoming or outgoing and formatting it accordingly
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     JSQMessage *message = [messages objectAtIndex:indexPath.item];

@@ -2,7 +2,7 @@
 //  ChatViewController.m
 //  Sheridan United
 //
-//  Created by Xcode User on 2017-03-31.
+//  Created by Saad Ahmad on 2017-03-31.
 //  Copyright © 2017 Sheridan College. All rights reserved.
 //
 
@@ -19,6 +19,7 @@
 
 @implementation MainViewController
 @synthesize chatBtn,tableView,ref,userList;
+//instantiate the view with a Firebase database instance
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.userList=[NSMutableArray new];
@@ -26,6 +27,7 @@
     [self getUsers];
     // Do any additional setup after loading the view.
 }
+//tries to sign out the user and returns error if not successful
 - (IBAction)logOutDidTapped:(id)sender {
     NSError *signOutError;
     BOOL status = [[FIRAuth auth] signOut:&signOutError];
@@ -40,6 +42,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+//segues to handle the navigation
 - (IBAction)chatButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"MainToChat" sender:self];}
 
@@ -50,8 +53,10 @@
 - (IBAction)requestButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"MainToRequest" sender:self];}
 #pragma mark db methods
+//gets the list of all users from firebase which will be used to append to the tableview
 -(void)getUsers
-{
+{//looking up the 'users' child of firebase
+    //snapshot contains a dictionary of all the users
 
     [[self.ref child:@"users"]  observeEventType:FIRDataEventTypeChildAdded withBlock:
      ^(FIRDataSnapshot *snapshot)
@@ -61,6 +66,7 @@
          NSLog(@"userdic %@", dict);
          [user setValuesForKeysWithDictionary:dict];
          [self.userList addObject:user];
+         //loading the tableview after populating it in the main thread
          [self.tableView performSelectorOnMainThread:@selector(reloadData)
                                            withObject:nil
                                         waitUntilDone:NO];
@@ -76,6 +82,7 @@
     return [userList count];
     
 }
+//populating the tableView cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = @"Cell";
@@ -84,9 +91,12 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
+    //again reloading the tableview in the main thread
     [self.tableView performSelectorOnMainThread:@selector(reloadData)
                                      withObject:nil
                                   waitUntilDone:NO];
+    //assigning an image to the tableview cell
+    //this is where we use SDWebImage
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[userList[indexPath.row] profileUrl]]
                    placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     cell.textLabel.text=[userList[indexPath.row] displayName];

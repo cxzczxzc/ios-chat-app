@@ -2,7 +2,7 @@
 //  RequestViewController.h
 //  Sheridan United
 //
-//  Created by Xcode User on 2017-04-18.
+//  Created by Puneet Kaur on 2017-04-18.
 //  Copyright © 2017 Sheridan College. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
     UITextField *titleTf;
     UITextView *descTv;
     FIRDatabaseReference *ref;
-   NSMutableArray *locationArray;
+    NSMutableArray *locationArray;
     NSMutableArray *typeArray;
     IBOutlet UIPickerView *locationPicker;
     IBOutlet UIPickerView *typePicker;

@@ -2,9 +2,11 @@
 //  RegisterViewController.h
 //  Sheridan United
 //
-//  Created by Xcode User on 2017-04-15.
+//  Created by Surbhi Handa on 2017-04-15.
 //  Copyright © 2017 Sheridan College. All rights reserved.
 //
+//---------------------------------------------------//
+//this class enabled the user to register to Firebase
 
 #import <UIKit/UIKit.h>
 @import Firebase;
