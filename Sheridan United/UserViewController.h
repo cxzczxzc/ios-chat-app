@@ -10,17 +10,17 @@
 @import Firebase;
 @interface UserViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
-         FIRDatabaseReference *ref;
-         UIImageView *imageView;
-         UITextField *nameTf;
-         UITextField *campusTf;
-         UITextField *phoneTf;
-         UITextField *programTf;
-         UITextField *tagLineTf;
-         UIImagePickerController *imagePicker;
-         NSString *profileImageURL;
-         UIImage *profileImage;
-   
+    FIRDatabaseReference *ref;
+    UIImageView *imageView;
+    UITextField *nameTf;
+    UITextField *campusTf;
+    UITextField *phoneTf;
+    UITextField *programTf;
+    UITextField *tagLineTf;
+    UIImagePickerController *imagePicker;
+    NSString *profileImageURL;
+    UIImage *profileImage;
+    
 }
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;

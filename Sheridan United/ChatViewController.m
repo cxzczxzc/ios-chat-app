@@ -42,7 +42,7 @@
     self.ref=[[FIRDatabase database] reference ];
     [self observeMessages];
     
-  
+    
     
 }
 
@@ -52,14 +52,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-//*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ //*/
 -(void)setupAvatar:(NSString *)url messageId: (NSString*) m
 {
     if(url)
@@ -71,6 +71,7 @@
         [avatarDictionary setValue:userImg forKey:m];
         //[self.avatarDictionary addObject:userImg];
     }
+    //blalalal
     else{
         UIImage *img=[UIImage imageNamed:@"profilebackground.png"];
         JSQMessagesAvatarImage *u=[JSQMessagesAvatarImageFactory avatarImageWithImage:img diameter:30];
@@ -82,7 +83,7 @@
 // ---------------------------------IMPORTANT METHOD---------------------------------//
 -(void)observeUsers:(NSString*) id
 {
-
+    
     [[[self.ref child:@"users"] child: id] observeEventType:FIRDataEventTypeValue withBlock:
      ^(FIRDataSnapshot *snapshot)
      {
@@ -91,14 +92,14 @@
          self.senderDisplayName=[dict objectForKey:@"displayName"];
          NSLog(@"dictionary contents %@",avatarURL);
          [self setupAvatar:avatarURL messageId:id];
-
+         
      }];
 }
 // ---------------------------------IMPORTANT METHOD---------------------------------//
 -(void)observeMessages
 {
-[[self.ref child:@"messages" ] observeEventType:FIRDataEventTypeChildAdded withBlock:
-      ^(FIRDataSnapshot *snapshot)
+    [[self.ref child:@"messages" ] observeEventType:FIRDataEventTypeChildAdded withBlock:
+     ^(FIRDataSnapshot *snapshot)
      {
          NSDictionary *dict = snapshot.value;
          NSString *media= [dict objectForKey:@"mediaType"];
@@ -110,13 +111,13 @@
          [self observeUsers : senderId];
          if([media isEqualToString:@"TEXT"] )
          {
-         js=[[JSQMessage alloc] initWithSenderId:senderId
-                                           senderDisplayName:senderName
-                                                        date:[NSDate date]
-                                                       text:text ];
-         
-            
-        }
+             js=[[JSQMessage alloc] initWithSenderId:senderId
+                                   senderDisplayName:senderName
+                                                date:[NSDate date]
+                                                text:text ];
+             
+             
+         }
          else if([media isEqualToString:@"Photo"])
          {
              
@@ -128,7 +129,7 @@
                                    senderDisplayName:self.senderDisplayName
                                                 date:[NSDate date]
                                                media:parsedImage] ;
-      
+             
              
          }
          else
@@ -143,14 +144,14 @@
              {
                  [parsedVideo setAppliesMediaViewMaskAsOutgoing:NO];
              }
-
+             
              js = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:parsedVideo];
-                      }
+         }
          
          [self.messages addObject: js];
          [self finishSendingMessageAnimated:YES];
-
-
+         
+         
      }];
 }
 
@@ -170,31 +171,31 @@
     printf("Accessory button pressed");
     UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"Media Message" message:@"Please select a media" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cancel = [UIAlertAction
-                                   actionWithTitle:@"Cancel"
-                                   style:UIAlertActionStyleCancel
-                                   handler:^(UIAlertAction *action)
-                                   {
-                                       
-                                   }];
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleCancel
+                             handler:^(UIAlertAction *action)
+                             {
+                                 
+                             }];
     UIAlertAction *pickPhoto = [UIAlertAction
-                             actionWithTitle:@"Photo Library"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction *action)
-                             {
-                                 [self getMediaFrom:[[NSArray alloc] initWithObjects: (NSString *)kUTTypeImage,nil]];
-                             }];
+                                actionWithTitle:@"Photo Library"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction *action)
+                                {
+                                    [self getMediaFrom:[[NSArray alloc] initWithObjects: (NSString *)kUTTypeImage,nil]];
+                                }];
     UIAlertAction *pickVideo = [UIAlertAction
-                             actionWithTitle:@"Video Library"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction *action)
-                             {
-                                 [self getMediaFrom:[[NSArray alloc] initWithObjects: (NSString *)kUTTypeMovie,nil]];
-                             }];
+                                actionWithTitle:@"Video Library"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction *action)
+                                {
+                                    [self getMediaFrom:[[NSArray alloc] initWithObjects: (NSString *)kUTTypeMovie,nil]];
+                                }];
     
     [sheet addAction:cancel];
     [sheet addAction:pickPhoto];
     [sheet addAction:pickVideo];
-   [self presentViewController:sheet animated:YES completion:nil];
+    [self presentViewController:sheet animated:YES completion:nil];
 }
 -(void) getMediaFrom : (NSArray *)type
 {
@@ -245,7 +246,9 @@
 {
     [super collectionView];
     NSLog(@"Msg count: %lu",messages.count);
+    
     return messages.count;
+    
 }
 -(id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -268,7 +271,7 @@
         
     }
     return self.outgoingBubbleImageData;
-
+    
 }
 //method used to set avatar
 -(id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -324,8 +327,8 @@
              NSLog(@"Failed to save image message %@",error.description);
          }
      }];
-
-
+    
+    
 }
 //UPLOAD VIDEO SENT BY USER TO DB
 -(void)sendVideoToDatabase:(NSURL*)vdo
@@ -356,6 +359,6 @@
              NSLog(@"Failed to save video message %@", error.description);
          }
      }];
-  
+    
 }
 @end

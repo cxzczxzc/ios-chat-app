@@ -24,6 +24,7 @@
     self.userList=[NSMutableArray new];
     self.ref=[[FIRDatabase database] reference ];
     [self getUsers];
+    // Do any additional setup after loading the view.
 }
 - (IBAction)logOutDidTapped:(id)sender {
     NSError *signOutError;
@@ -32,16 +33,7 @@
         NSLog(@"Error signing out: %@", signOutError);
         return;
     }
-    printf("logOutDidTapped pressed");
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
-    //From main storyboard instantiate a View Controller
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"LoginVC"];
-    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:vc animated:YES completion:NULL];
-    //Get the app delegate
-    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    //Set navigation controller as root view controller
-    appDelegate.window.rootViewController = vc;
+    [self performSegueWithIdentifier:@"Logout" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,16 +41,14 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)chatButtonPressed:(id)sender {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
-    //From main storyboard instantiate a View Controller
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"ChatVC"];
-    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:vc animated:YES completion:NULL];
-    //Get the app delegate
-    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    //Set navigation controller as root view controller
-    appDelegate.window.rootViewController = vc;
+    [self performSegueWithIdentifier:@"MainToChat" sender:self];}
+
+- (IBAction)userButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"MainToUser" sender:self];
 }
+
+- (IBAction)requestButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"MainToRequest" sender:self];}
 #pragma mark db methods
 -(void)getUsers
 {
@@ -68,6 +58,7 @@
      {
          User *user= [[User alloc]init];
          NSDictionary *dict = snapshot.value;
+         NSLog(@"userdic %@", dict);
          [user setValuesForKeysWithDictionary:dict];
          [self.userList addObject:user];
          [self.tableView performSelectorOnMainThread:@selector(reloadData)
@@ -83,6 +74,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [userList count];
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

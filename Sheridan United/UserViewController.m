@@ -13,7 +13,7 @@
 @end
 
 @implementation UserViewController
-@synthesize phoneTf,nameTf,imageView,programTf,tagLineTf,campusTf,saveBtn;
+@synthesize phoneTf,nameTf,imageView,programTf,tagLineTf,campusTf,saveBtn,ref;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,15 +32,25 @@
 }
 - (IBAction)saveButtonDidTapped:(id)sender {
     
+    FIRUser *currentUser = [FIRAuth auth].currentUser;
+    [self saveValuesForUser: currentUser];
+    
 }
--(void)updateUserData
+
+-(void) saveValuesForUser:(FIRUser *) user
 {
     NSString *name = nameTf.text;
     NSString *campus =campusTf.text;
     NSString *phone =phoneTf.text;
     NSString *program = programTf.text;
     NSString *tagline = tagLineTf.text;
+    // NSDictionary *userInformation = @{@"email" : name};
     //[FIRAuth auth]
+    self.ref = [[FIRDatabase database] referenceFromURL:@"https://sheridan-united.firebaseio.com"];
+    
+    [[[ref child:@"users"] child:user.uid]
+     updateChildValues:@{@"senderId": user.uid,@"displayName": name, @"campus": campus, @"phone": phone, @"program": program, @"tagline": tagline}];
+    
 }
 #pragma mark image methods
 - (IBAction)chooseImageAction:(id)sender
@@ -61,20 +71,23 @@
     imageView.image = profileImage;
     [self dismissViewControllerAnimated:NO completion:nil];
 }
-
+-(IBAction)goBack:(id)sender
+{
+    [self performSegueWithIdentifier:@"UserToMain" sender:self];
+}
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

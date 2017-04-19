@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet FIRDatabaseReference *ref;
 @property (strong, nonatomic)  NSMutableArray *userList;
+@property (weak, nonatomic) IBOutlet UIButton *createNewRequest;
 
 @end
