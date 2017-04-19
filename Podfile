@@ -9,6 +9,7 @@ target 'Sheridan United' do
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'SDWebImage', '~>3.8'
   # Pods for Sheridan United
 
 end

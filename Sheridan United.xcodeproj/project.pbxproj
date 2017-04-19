@@ -20,6 +20,7 @@
 		AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE232AEB1E8E5AC400375D4E /* ChatViewController.m */; };
 		AE5FF5CF1EA20EDE00CC4C1C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */; };
 		AE5FF5D11EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */; };
+		AE704DF41EA6FBB700FCA0C0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AE704DF31EA6FBB700FCA0C0 /* User.m */; };
 		AEA3DF1D1EA441A000AA1A77 /* profilebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */; };
 		AEA3DF201EA550B900AA1A77 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */; };
 		AEA3DF231EA6A8B000AA1A77 /* AutheticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA3DF221EA6A8B000AA1A77 /* AutheticationManager.m */; };
@@ -47,6 +48,8 @@
 		AE5FF5CD1EA20EDE00CC4C1C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		AE5FF5CE1EA20EDE00CC4C1C /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		AE5FF5D01EA21AAB00CC4C1C /* Screen Shot 2017-04-15 at 5.08.30 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2017-04-15 at 5.08.30 AM.png"; sourceTree = "<group>"; };
+		AE704DF21EA6FBB700FCA0C0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../User.h; sourceTree = "<group>"; };
+		AE704DF31EA6FBB700FCA0C0 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../User.m; sourceTree = "<group>"; };
 		AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilebackground.png; sourceTree = "<group>"; };
 		AEA3DF1E1EA550B900AA1A77 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 		AE232AC91E8E1A0A00375D4E /* Sheridan United */ = {
 			isa = PBXGroup;
 			children = (
+				AE704DF21EA6FBB700FCA0C0 /* User.h */,
+				AE704DF31EA6FBB700FCA0C0 /* User.m */,
 				AEA3DF1E1EA550B900AA1A77 /* UserViewController.h */,
 				AEA3DF1F1EA550B900AA1A77 /* UserViewController.m */,
 				AEA3DF1C1EA441A000AA1A77 /* profilebackground.png */,
@@ -268,6 +273,7 @@
 			files = (
 				AEA3DF201EA550B900AA1A77 /* UserViewController.m in Sources */,
 				AE232AD21E8E1A0A00375D4E /* ViewController.m in Sources */,
+				AE704DF41EA6FBB700FCA0C0 /* User.m in Sources */,
 				AE5FF5CF1EA20EDE00CC4C1C /* RegisterViewController.m in Sources */,
 				AE232ACF1E8E1A0A00375D4E /* AppDelegate.m in Sources */,
 				AE232AEC1E8E5AC400375D4E /* ChatViewController.m in Sources */,
