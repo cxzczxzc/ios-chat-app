@@ -2,9 +2,7 @@
 //  ChatViewController.m
 //  Sheridan United
 //
-//  Created by Saad Ahmad on 2017-03-31.
-//  Copyright © 2017 Sheridan College. All rights reserved.
-//
+
 //this class is used to display the chat interface
 // it can be used to send text, photo and video messages
 //it is updated in real time with Firebase, nothing is stored locally

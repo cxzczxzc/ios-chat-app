@@ -2,9 +2,7 @@
 //  RegisterViewController.m
 //  Sheridan United
 //
-//  Created by Surbhi Handa on 2017-04-15.
-//  Copyright © 2017 Sheridan College. All rights reserved.
-//
+
 
 #import "RegisterViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>

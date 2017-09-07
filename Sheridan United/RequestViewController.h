@@ -2,9 +2,6 @@
 //  RequestViewController.h
 //  Sheridan United
 //
-//  Created by Puneet Kaur on 2017-04-18.
-//  Copyright © 2017 Sheridan College. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 @import Firebase;

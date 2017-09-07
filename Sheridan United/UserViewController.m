@@ -2,11 +2,7 @@
 //  UserViewController.m
 //  Sheridan United
 //
-//  Created by Ankit Shah on 2017-04-17.
-//  Copyright © 2017 Sheridan College. All rights reserved.
-//
-//this class is used to add additional user data
-// it builds user profile
+
 #import "UserViewController.h"
 @import Firebase;
 @interface UserViewController ()

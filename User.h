@@ -1,10 +1,4 @@
-//
-//  User.h
-//  Sheridan United
-//
-//  Created by Saad Ahmad on 2017-04-18.
-//  Copyright © 2017 Sheridan College. All rights reserved.
-//
+
 
 #import <Foundation/Foundation.h>
 //this class is used to store the data retrieved from Firebase

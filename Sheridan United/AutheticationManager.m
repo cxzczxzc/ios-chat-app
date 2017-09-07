@@ -1,10 +1,4 @@
-//
-//  AutheticationManager.m
-//  Sheridan United
-//
-//  Created by Surbhi Handa on 2017-04-18.
-//  Copyright © 2017 Sheridan College. All rights reserved.
-//
+
 //This class contains the code to check if the user is already signed in
 // If yes then the user is not required to login again after minimizing the application
 // For performance reasons we disregarded this code after intial implementation
